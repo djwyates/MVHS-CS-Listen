@@ -1,0 +1,56 @@
+<%- include("../partials/header") %>
+
+<div class="demo">
+  <div class="demo__video-section">
+    <a class="demo__link-back" href="/demos">
+      <img class="demo__arrow-back" src="/images/arrow-back.svg" alt="arrow_back"/>Back to <%- demo.category %>
+    </a>
+    <div id="player"></div>
+    <% if (demo.tags && Array.isArray(demo.tags) && demo.tags.length > 0) { %>
+      <div class="demo__tags">
+        <% demo.tags.forEach(function(tag) { %>
+          <div class="demo__tag"><%- tag %></div>
+        <% }); %>
+      </div>
+    <% } %>
+    <h1 class="demo__title"><%- demo.title %></h1>
+    <p class="demo__description"><%- demo.description %></p>
+  </div>
+  <div class="demo__suggestions-section">
+
+  </div>
+</div>
+
+<script>
+  var tag = document.createElement("script");
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName("script")[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player("player", {
+      height: "429",
+      width: "704",
+      videoId: "<%- demo.videoID %>",
+      events: {
+        "onReady": onPlayerReady,
+        "onStateChange": onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  var done = false;
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+      done = true;
+    }
+  }
+</script>
+
+<%- include("../partials/footer") %>

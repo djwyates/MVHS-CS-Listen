@@ -1,0 +1,30 @@
+.nav {
+  display: flex;
+  align-items: center;
+  padding: 28px 140px 28px 120px;
+}
+
+.nav__title {
+  margin-right: auto;
+  color: #F2F2F2;
+  font-family: "Hind", sans-serif;
+  font-size: 36px;
+	font-weight: 300;
+  text-decoration: none;
+}
+
+.nav__link {
+  color: #B6B6B6;
+  font-family: "Hind", sans-serif;
+  font-size: 24px;
+	font-weight: 300;
+  text-decoration: none;
+}
+
+.nav__link:hover {
+  text-decoration: underline;
+}
+
+.nav__link:not(:first-of-type) {
+  margin-left: 110px;
+}
