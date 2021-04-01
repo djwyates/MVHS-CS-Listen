@@ -2,9 +2,7 @@
 
 <div class="demo">
   <div class="demo__video-section">
-    <a class="demo__link-back" href="/demos">
-      <img class="demo__arrow-back" src="/images/arrow-back.svg" alt="arrow_back"/>Back to <%- demo.category %>
-    </a>
+    <div class="flex-box"><a class="demo__link-back" href="/demos">Back to <%- demo.category %></a></div>
     <div id="player"></div>
     <% if (demo.tags && Array.isArray(demo.tags) && demo.tags.length > 0) { %>
       <div class="demo__tags">
@@ -16,9 +14,7 @@
     <h1 class="demo__title"><%- demo.title %></h1>
     <p class="demo__description"><%- demo.description %></p>
   </div>
-  <div class="demo__suggestions-section">
-
-  </div>
+  <!-- (possible addition) add a section for more information related to the deomonstration -->
 </div>
 
 <script>

@@ -1,0 +1,34 @@
+<%- include("../partials/header") %>
+
+<div class="faq">
+  <a class="faq__link" href="/faq/new">Ask a Question</a>
+  <% faqs.filter(f => f.isPublic).sort((a, b) => a.order < b.order ? 1 : -1).forEach(function(faq) { %>
+    <div class="faq__accordion">
+      <div class="faq__question"><%- faq.question %><img class="faq__plus-or-minus-sign" src="/images/plus-sign.svg" alt="plus_or_minus_sign"></div>
+      <div class="faq__accordion-body"><p class="faq__answer"><%- faq.answer %></p></div>
+    </div>
+  <% }); %>
+</div>
+
+<script>
+  const accordions = document.querySelectorAll(".faq__accordion");
+  if (accordions) {
+    accordions.forEach(function(accordion) {
+      accordion.addEventListener("click", function() {
+        var question = accordion.children[0];
+        var plusOrMinusSign = question.children[0];
+        var accordionBody = accordion.children[1];
+        question.classList.toggle("faq__question--purple");
+        if (question.classList.contains("faq__question--purple")) {
+          accordionBody.style.maxHeight = accordionBody.scrollHeight + "px";
+          plusOrMinusSign.src = "/images/minus-sign.svg";
+        } else {
+          accordionBody.style.maxHeight = 0;
+          plusOrMinusSign.src = "/images/plus-sign.svg";
+        }
+      });
+    });
+  }
+</script>
+
+<%- include("../partials/footer") %>

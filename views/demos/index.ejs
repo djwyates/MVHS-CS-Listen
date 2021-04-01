@@ -13,6 +13,15 @@
       <% demos.filter(d => d.category == "Recordings").forEach(getCardHTML); %>
     </div>
   </div>
+  <% var otherDemos = demos.filter(d => d.category == "Other");
+  if (otherDemos.length > 0) { %>
+    <div class="demos__category">
+      <div class="flexbox"><h1 id="other" class="demos__category-title">Other</h1></div>
+      <div class="demos__cards">
+        <% otherDemos.forEach(getCardHTML); %>
+      </div>
+    </div>
+  <% } %>
 </div>
 
 <% function getCardHTML(demo) { %>

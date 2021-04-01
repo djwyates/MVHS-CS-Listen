@@ -22,6 +22,7 @@ router.post("/", function(req, res) {
     title: req.sanitize(req.body.title).trim(),
     subtitle: req.sanitize(req.body.subtitle).trim(),
     description: req.sanitize(req.body.description).trim(),
+    tags: req.sanitize(req.body.tags).trim().split(","),
     imageFileName: req.sanitize(req.body.imageFileName).trim(),
     videoID: req.sanitize(req.body.videoID).trim()
   };
