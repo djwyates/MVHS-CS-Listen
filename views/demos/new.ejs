@@ -3,34 +3,34 @@
 <a class="demo__back-link" href="/demos">Back to Demos</a>
 <form action="/demos" method="post">
   <div class="demo__form-item">
-    <select name="category">
+    <select class="demo__input demo__input--select" name="category">
       <option value="Demonstrations">Demonstrations</option>
-      <option value="Recordings">Recordings</option>
-      <option value="Other">Other</option>
+      <option value="Recordings" <% if (query.c == "recordings") { %>selected<% } %>>Recordings</option>
+      <option value="Other" <% if (query.c == "other") { %>selected<% } %>>Other</option>
     </select>
   </div>
   <div class="demo__form-item">
-    <h1 class="demo__input-title">Title</h1>
+    <label class="demo__input-title" for="title">Title</label>
     <input class="demo__input" type="text" name="title" placeholder="Max. 25 characters"/>
   </div>
   <div class="demo__form-item">
-    <h1 class="demo__input-title">Subtitle</h1>
+    <label class="demo__input-title" for="subtitle">Subtitle</label>
     <input class="demo__input" type="text" name="subtitle" placeholder="Max. 40 characters"/>
   </div>
   <div class="demo__form-item">
-    <h1 class="demo__input-title">Description</h1>
-    <input class="demo__input" type="text" name="description" placeholder="Max. 100 characters"/>
+    <label class="demo__input-title" for="description">Description</label>
+    <textarea class="demo__input" type="text" name="description" placeholder="Max. 100 characters"></textarea>
   </div>
   <div class="demo__form-item">
-    <h1 class="demo__input-title">Tags</h1>
+    <label class="demo__input-title" for="tags">Tags</label>
     <input class="demo__input" type="text" name="tags" placeholder="Optional: Separate with commas"/>
   </div>
   <div class="demo__form-item">
-    <h1 class="demo__input-title">Image File Name</h1>
+    <label class="demo__input-title" for="imageFileName">Image File Name</label>
     <input class="demo__input" type="text" name="imageFileName" placeholder="Image directory is public/images/demos"/>
   </div>
   <div class="demo__form-item">
-    <h1 class="demo__input-title">Youtube Video ID</h1>
+    <label class="demo__input-title" for="videoID">Youtube Video ID</label>
     <input class="demo__input" type="text" name="videoID" placeholder="Found at the end of the YouTube video link"/>
   </div>
   <div class="demo__form-item">

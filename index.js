@@ -18,6 +18,10 @@ app.use(expressSanitizer());
 app.use(favicon(__dirname + "/public/images/favicon.ico"));
 app.use(methodOverride("_method"));
 mongoose.connect("mongodb://localhost:27017/cs-listen", {useCreateIndex: true, useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true});
+app.use(function(req, res, next) {
+  res.locals.query = req.query;
+  next();
+});
 
 app.use("/faq", faqRoutes);
 app.use("/demos", demoRoutes);

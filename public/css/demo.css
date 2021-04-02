@@ -16,6 +16,7 @@
 
 .demos__category-title {
   display: inline-block;
+  align-self: flex-start;
   position: relative;
   padding: 4px 15px 0 15px;
   margin-bottom: 25px;
@@ -169,8 +170,17 @@
 	text-decoration: none;
 }
 
+.demo__form-item {
+  display: flex;
+  flex-direction: column;
+}
+
 .demo__form-item:not(:first-of-type) {
   margin-top: 20px;
+}
+
+.demo__form-item > * {
+  align-self: flex-start;
 }
 
 .demo__input-title {
@@ -201,6 +211,16 @@
   font-family: "Inconsolata", monospace;
   font-size: 20px;
   font-weight: 400;
+}
+
+.demo__input--select {
+  max-width: 210px;
+  padding: 11px 16px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='50'><polygon points='0,0 100,0 50,50' style='fill:%23666666;'/></svg>");
+  background-position: right 10px top 50%;
+  background-repeat: no-repeat;
+  background-size: 15px;
+  cursor: pointer;
 }
 
 .demo__submit-button {

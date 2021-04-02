@@ -1,9 +1,9 @@
 @media only screen and (max-width: 1250px) {
   .body-wrapper {
-  	margin: 40px 120px 60px 100px;
+  	margin: 40px 100px 60px 100px;
   }
   .nav {
-    padding: 28px 120px 28px 100px;
+    padding: 28px 100px;
   }
   .demos__category-title::after {
   	width: calc(100vw - 100% - 116px);
@@ -12,10 +12,10 @@
 
 @media only screen and (max-width: 1150px) {
   .body-wrapper {
-  	margin: 40px 100px 60px 80px;
+  	margin: 40px 80px 60px 80px;
   }
   .nav {
-    padding: 28px 100px 28px 80px;
+    padding: 28px 80px;
   }
   .demos__category-title::after {
   	width: calc(100vw - 100% - 86px);
@@ -24,10 +24,10 @@
 
 @media only screen and (max-width: 1050px) {
   .body-wrapper {
-  	margin: 40px 80px 60px 60px;
+  	margin: 40px 60px 60px 60px;
   }
   .nav {
-    padding: 28px 80px 28px 60px;
+    padding: 28px 60px;
   }
   .demos__category-title::after {
   	width: calc(100vw - 100% - 66px);
@@ -48,10 +48,10 @@
 
 @media only screen and (max-width: 850px) {
   .body-wrapper {
-  	margin: 40px 70px 60px 50px;
+  	margin: 40px 50px 60px 50px;
   }
   .nav {
-    padding: 28px 70px 28px 50px;
+    padding: 28px 50px;
   }
   .demos__category-title::after {
   	width: calc(100vw - 100% - 56px);
@@ -63,10 +63,10 @@
 
 @media only screen and (max-width: 760px) {
   .body-wrapper {
-  	margin: 40px 50px 60px 30px;
+  	margin: 40px 30px 60px 30px;
   }
   .nav {
-    padding: 28px 50px 28px 30px;
+    padding: 28px 30px;
   }
   .demos__category-title::after {
   	width: calc(100vw - 100% - 36px);
@@ -74,5 +74,22 @@
 }
 
 @media only screen and (max-width: 730px) {
-  /* TODO: Add burger menu */
+  .body-wrapper {
+  	margin: 40px 20px 60px 20px;
+  }
+  .nav {
+    padding: 28px 20px;
+  }
+  .demos__category-title::after {
+  	width: calc(100vw - 100% - 36px);
+  }
+  .nav__title {
+    font-size: 32px;
+  }
+  .nav__link {
+    display: none;
+  }
+  .nav__menu {
+    display: block;
+  }
 }

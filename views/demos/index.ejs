@@ -2,13 +2,17 @@
 
 <div class="demos">
   <div class="demos__category">
-    <div class="flexbox"><h1 id="demonstrations" class="demos__category-title">Demonstrations</h1></div>
+    <h1 id="demonstrations" class="demos__category-title">Demonstrations
+      <a href="/demos/new"><img class="test" width="17" height="17" src="/images/plus-sign-2.svg" alt="plus_sign"></a>
+    </h1>
     <div class="demos__cards">
       <% demos.filter(d => d.category == "Demonstrations").forEach(getCardHTML); %>
     </div>
   </div>
   <div class="demos__category">
-    <div class="flexbox"><h1 id="recordings" class="demos__category-title">Recordings</h1></div>
+    <h1 id="recordings" class="demos__category-title">Recordings
+      <a href="/demos/new?c=recordings"><img class="test" width="17" height="17" src="/images/plus-sign-2.svg" alt="plus_sign"></a>
+    </h1>
     <div class="demos__cards">
       <% demos.filter(d => d.category == "Recordings").forEach(getCardHTML); %>
     </div>
@@ -16,7 +20,9 @@
   <% var otherDemos = demos.filter(d => d.category == "Other");
   if (otherDemos.length > 0) { %>
     <div class="demos__category">
-      <div class="flexbox"><h1 id="other" class="demos__category-title">Other</h1></div>
+      <h1 id="other" class="demos__category-title">Other
+        <a href="/demos/new?c=other"><img class="test" width="17" height="17" src="/images/plus-sign-2.svg" alt="plus_sign"></a>
+      </h1>
       <div class="demos__cards">
         <% otherDemos.forEach(getCardHTML); %>
       </div>
