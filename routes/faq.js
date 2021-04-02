@@ -18,8 +18,8 @@ router.get("/new", function(req, res) {
 
 router.post("/", function(req, res) {
   var question = req.sanitize(req.body.question).trim();
-  if (!question || question.length == 0 || question.length > 500) return res.redirect("/faq/new");
-  Faq.create({question: question, answer: req.body.answer.trim() /* <-- TEMP --> */, isPublic: true}, function(err, faq) {
+  if (!question || question.length == 0 || question.length > 200) return res.redirect("/faq/new");
+  Faq.create({question: question, email: req.sanitize(req.body.email).trim(), isPublic: false}, function(err, faq) {
     if (err) console.error(err);
     res.redirect("/faq");
   });

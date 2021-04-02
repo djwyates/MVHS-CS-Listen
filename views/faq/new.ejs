@@ -1,9 +1,18 @@
+<%- include("../partials/header") %>
+
+<a class="faq__back-link" href="/faq">Back to FAQ</a>
 <form action="/faq" method="post">
-  <p>Email</p>
-  <input type="text" name="email" placeholder="We will email you an answer"/>
-  <p>What is your question?</p>
-  <input type="text" name="question"/>
-  <p>Answer</p><!-- TEMP -->
-  <input type="text" name="answer"/><!-- TEMP -->
-  <button type="submit">Submit</button>
+  <div class="faq__form-item">
+    <h1 class="faq__input-title">What is your question?</h1>
+    <input class="faq__input" type="text" name="question" placeholder="Max. 200 characters"/>
+  </div>
+  <div class="faq__form-item">
+    <h1 class="faq__input-title">Email: We will send you our answer!</h1>
+    <input class="faq__input" type="text" name="email" placeholder="Optional"/>
+  </div>
+  <div class="faq__form-item">
+    <button class="faq__submit-button" type="submit">Submit</button>
+  </div>
 </form>
+
+<%- include("../partials/footer") %>

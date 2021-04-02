@@ -1,20 +1,41 @@
+<%- include("../partials/header") %>
+
+<a class="demo__back-link" href="/demos">Back to Demos</a>
 <form action="/demos" method="post">
-  <select name="category">
-    <option value="Demonstrations">Demonstrations</option>
-    <option value="Recordings">Recordings</option>
-    <option value="Other">Other</option>
-  </select>
-  <p>Title</p>
-  <input type="text" name="title"/>
-  <p>Subtitle</p>
-  <input type="text" name="subtitle"/>
-  <p>Description</p>
-  <input type="text" name="description"/>
-  <p>Tags (optional; separate with commas & no spaces)</p>
-  <input type="text" name="tags"/>
-  <p>Image File Name</p>
-  <input type="text" name="imageFileName"/>
-  <p>Youtube Video ID</p>
-  <input type="text" name="videoID"/>
-  <button type="submit">Submit</button>
+  <div class="demo__form-item">
+    <select name="category">
+      <option value="Demonstrations">Demonstrations</option>
+      <option value="Recordings">Recordings</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div class="demo__form-item">
+    <h1 class="demo__input-title">Title</h1>
+    <input class="demo__input" type="text" name="title" placeholder="Max. 25 characters"/>
+  </div>
+  <div class="demo__form-item">
+    <h1 class="demo__input-title">Subtitle</h1>
+    <input class="demo__input" type="text" name="subtitle" placeholder="Max. 40 characters"/>
+  </div>
+  <div class="demo__form-item">
+    <h1 class="demo__input-title">Description</h1>
+    <input class="demo__input" type="text" name="description" placeholder="Max. 100 characters"/>
+  </div>
+  <div class="demo__form-item">
+    <h1 class="demo__input-title">Tags</h1>
+    <input class="demo__input" type="text" name="tags" placeholder="Optional: Separate with commas"/>
+  </div>
+  <div class="demo__form-item">
+    <h1 class="demo__input-title">Image File Name</h1>
+    <input class="demo__input" type="text" name="imageFileName" placeholder="Image directory is public/images/demos"/>
+  </div>
+  <div class="demo__form-item">
+    <h1 class="demo__input-title">Youtube Video ID</h1>
+    <input class="demo__input" type="text" name="videoID" placeholder="Found at the end of the YouTube video link"/>
+  </div>
+  <div class="demo__form-item">
+    <button class="demo__submit-button" type="submit">Submit</button>
+  </div>
 </form>
+
+<%- include("../partials/footer") %>

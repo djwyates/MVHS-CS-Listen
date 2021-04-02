@@ -1,7 +1,7 @@
 <%- include("../partials/header") %>
 
 <div class="faq">
-  <a class="faq__link" href="/faq/new">Ask a Question</a>
+  <a class="faq__ask-question-link" href="/faq/new">Ask a Question</a>
   <% faqs.filter(f => f.isPublic).sort((a, b) => a.order < b.order ? 1 : -1).forEach(function(faq) { %>
     <div class="faq__accordion">
       <div class="faq__question"><%- faq.question %><img class="faq__plus-or-minus-sign" src="/images/plus-sign.svg" alt="plus_or_minus_sign"></div>

@@ -10,7 +10,7 @@ body {
 
 .body-wrapper {
 	min-height: calc(100vh - 114px);
-	margin: 40px 140px 0 120px;
+	margin: 40px 140px 60px 120px;
 }
 
 .div-link {
