@@ -1,5 +1,6 @@
 const express = require("express"),
       router = express.Router(),
+      auth = require("../middleware/auth"),
       Demo = require("../models/demo");
 
 router.get("/", function(req, res) {
@@ -12,11 +13,11 @@ router.get("/", function(req, res) {
   });
 });
 
-router.get("/new", function(req, res) {
+router.get("/new", auth.isAdmin, function(req, res) {
   res.render("demos/new");
 });
 
-router.post("/", function(req, res) {
+router.post("/", auth.isAdmin, function(req, res) {
   var newDemo = {
     category: req.sanitize(req.body.category).trim(),
     title: req.sanitize(req.body.title).trim(),

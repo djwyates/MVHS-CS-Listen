@@ -1,40 +1,40 @@
 <%- include("../partials/header") %>
 
-<a class="demo__back-link" href="/demos">Back to Demos</a>
+<a class="form__back-link" href="/demos">Back to Demos</a>
 <form action="/demos" method="post">
-  <div class="demo__form-item">
-    <select class="demo__input demo__input--select" name="category">
+  <div class="form__item">
+    <select class="form__input form__input--select" name="category">
       <option value="Demonstrations">Demonstrations</option>
       <option value="Recordings" <% if (query.c == "recordings") { %>selected<% } %>>Recordings</option>
       <option value="Other" <% if (query.c == "other") { %>selected<% } %>>Other</option>
     </select>
   </div>
-  <div class="demo__form-item">
-    <label class="demo__input-title" for="title">Title</label>
-    <input class="demo__input" type="text" name="title" placeholder="Max. 25 characters"/>
+  <div class="form__item">
+    <label class="form__label" for="title">Title</label>
+    <input class="form__input" type="text" name="title" placeholder="Max. 25 characters" required/>
   </div>
-  <div class="demo__form-item">
-    <label class="demo__input-title" for="subtitle">Subtitle</label>
-    <input class="demo__input" type="text" name="subtitle" placeholder="Max. 40 characters"/>
+  <div class="form__item">
+    <label class="form__label" for="subtitle">Subtitle</label>
+    <input class="form__input" type="text" name="subtitle" placeholder="Max. 40 characters" required/>
   </div>
-  <div class="demo__form-item">
-    <label class="demo__input-title" for="description">Description</label>
-    <textarea class="demo__input" type="text" name="description" placeholder="Max. 100 characters"></textarea>
+  <div class="form__item">
+    <label class="form__label" for="description">Description</label>
+    <textarea class="form__input" type="text" name="description" placeholder="Max. 100 characters" required></textarea>
   </div>
-  <div class="demo__form-item">
-    <label class="demo__input-title" for="tags">Tags</label>
-    <input class="demo__input" type="text" name="tags" placeholder="Optional: Separate with commas"/>
+  <div class="form__item">
+    <label class="form__label" for="tags">Tags</label>
+    <input class="form__input" type="text" name="tags" placeholder="Optional: Separate with commas"/>
   </div>
-  <div class="demo__form-item">
-    <label class="demo__input-title" for="imageFileName">Image File Name</label>
-    <input class="demo__input" type="text" name="imageFileName" placeholder="Image directory is public/images/demos"/>
+  <div class="form__item">
+    <label class="form__label" for="imageFileName">Image File Name</label>
+    <input class="form__input" type="text" name="imageFileName" placeholder="Image directory is public/images/demos" required/>
   </div>
-  <div class="demo__form-item">
-    <label class="demo__input-title" for="videoID">Youtube Video ID</label>
-    <input class="demo__input" type="text" name="videoID" placeholder="Found at the end of the YouTube video link"/>
+  <div class="form__item">
+    <label class="form__label" for="videoID">Youtube Video ID</label>
+    <input class="form__input" type="text" name="videoID" placeholder="Found at the end of the YouTube video link" required/>
   </div>
-  <div class="demo__form-item">
-    <button class="demo__submit-button" type="submit">Submit</button>
+  <div class="form__item">
+    <button class="form__submit-button" type="submit">Submit</button>
   </div>
 </form>
 

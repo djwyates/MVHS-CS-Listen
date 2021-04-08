@@ -1,0 +1,17 @@
+<%- include("./partials/header") %>
+
+<form action="/login" method="post">
+  <div class="form__item form__item--more-space">
+    <label class="form__label form__label--more-space" for="username">Username</label>
+    <input class="form__input" type="text" name="username" placeholder="For admins only" style="width:450px;" required/>
+  </div>
+  <div class="form__item form__item--more-space">
+    <label class="form__label form__label--more-space" for="password">Password</label>
+    <input class="form__input" type="password" name="password" placeholder="For admins only" style="width:450px;" required/>
+  </div>
+  <div class="form__item form__item--more-space">
+    <button class="form__submit-button" type="submit">Login</button>
+  </div>
+</form>
+
+<%- include("./partials/footer") %>

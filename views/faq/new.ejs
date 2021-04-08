@@ -1,17 +1,34 @@
 <%- include("../partials/header") %>
 
-<a class="faq__back-link" href="/faq">Back to FAQ</a>
+<a class="form__back-link" href="/faq">Back to Q/A</a>
 <form action="/faq" method="post">
-  <div class="faq__form-item">
-    <h1 class="faq__input-title">What is your question?</h1>
-    <input class="faq__input" type="text" name="question" placeholder="Max. 200 characters"/>
+  <div class="form__item <% if (!user || !user.isAdmin) { %>form__item--more-space<% } %>">
+    <label class="form__label <% if (!user || !user.isAdmin) { %>form__label--more-space<% } %>" for="question">What is your question?</label>
+    <input class="form__input" type="text" name="question" placeholder="Max. 200 characters" required/>
   </div>
-  <div class="faq__form-item">
-    <h1 class="faq__input-title">Email: We will send you our answer!</h1>
-    <input class="faq__input" type="text" name="email" placeholder="Optional"/>
+  <div class="form__item <% if (!user || !user.isAdmin) { %>form__item--more-space<% } %>">
+    <label class="form__label <% if (!user || !user.isAdmin) { %>form__label--more-space<% } %>" for="email">Email: We will send you our answer!</label>
+    <input class="form__input" type="text" name="email" placeholder="Optional"/>
   </div>
-  <div class="faq__form-item">
-    <button class="faq__submit-button" type="submit">Submit</button>
+  <% if (user && user.isAdmin) { %>
+    <div class="form__item">
+      <label class="form__label" for="answer">What is the answer to this question?</label>
+      <input class="form__input" type="text" name="answer" placeholder="Optional: For admins only"/>
+    </div>
+    <div class="form__item">
+      <label class="form__label" for="order">Order to be displayed on Q/A</label>
+      <input class="form__input" type="text" name="order" placeholder="Optional: For admins only"/>
+    </div>
+    <div class="form__item">
+      <label class="form__label form__label--checkbox" for="isPublic">
+        <input class="form__input--checkbox" id="isPublic" type="checkbox" name="isPublic" value="true"/>
+        <div class="form__input--checkbox-square"></div>
+        <span style="margin-top: 6px;">Publicly display on Q/A</span>
+      </label>
+    </div>
+  <% } %>
+  <div class="form__item">
+    <button class="form__submit-button" type="submit">Submit</button>
   </div>
 </form>
 
