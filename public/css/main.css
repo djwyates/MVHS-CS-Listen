@@ -2,6 +2,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -9,7 +10,6 @@ body {
 }
 
 .body-wrapper {
-	min-height: calc(100vh - 114px);
 	margin: 40px 120px 60px 120px;
 }
 

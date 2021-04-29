@@ -4,6 +4,7 @@
 
 .info__sidebar {
   position: fixed;
+  margin-left: 65px;
 }
 
 .info__sidebar-circle {
@@ -20,22 +21,6 @@
   user-select: none;
 }
 
-.info__sidebar > .info__sidebar-circle:not(:first-of-type) {
-  margin-top: 150px;
-}
-
-.info__sidebar > .info__sidebar-circle:not(:first-of-type)::before {
-  content: "";
-	display: block;
-	position: absolute;
-	top: -150px;
-	left: 17px;
-	width: 1px;
-	height: 150px;
-	background-color: rgba(97, 97, 210, 0.8);
-  /* margin-bottom (from above) = height = -top */
-}
-
 .info__sidebar-text {
   color: rgba(97, 97, 210, 0.8);
   font-family: "Hind", sans-serif;
@@ -43,8 +28,16 @@
   font-weight: 300;
 }
 
+.info__sidebar-line {
+  position: absolute;
+  width: 1px;
+  top: 37px;
+  left: calc(37px / 2 - 2px);
+  background-color: rgba(97, 97, 210, 0.8);
+}
+
 .info__content {
-  margin-left: 107px;
+  margin-left: 127px;
 }
 
 .info__row {
@@ -52,33 +45,81 @@
   margin-top: 20px;
 }
 
+.info__content > .info__row:not(:first-of-type) {
+  margin-top: 150px;
+}
+
+.info__row--full-screen {
+  height: 475px;
+  margin-bottom: 200px;
+  align-items: center;
+}
+
 .info__column {
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 600px;
 }
 
+.info__column {
+  margin-left: 75px;
+}
+
+.info__column--center {
+  justify-content: center;
+}
+
 .info__column--small {
-  width: 400px;
+  width: 500px;
+}
+
+.info__column--large {
+  width: 1300px;
 }
 
 .info__title {
+  margin-bottom: 25px;
   color: #F7F7F8;
   font-family: "Inconsolata", monospace;
   font-size: 46px;
   font-weight: 600;
 }
 
+.info__title--alt {
+  font-family: "Hind", sans-serif;
+  font-size: 28px;
+  font-weight: 300;
+}
+
+.info__title--no-margin {
+  margin-bottom: 0px;
+}
+
 .info__description {
-  margin-top: 25px;
   color: #8B8B9E;
   font-family: "Inconsolata", monospace;
   font-size: 34px;
   font-weight: 600;
 }
 
+.info__column > .info__description:not(:first-of-type) {
+  margin-top: 20px;
+}
+
+.info__links {
+  width: auto;
+  display: flex;
+}
+
+.info__links > .info__link:not(:first-of-type) {
+  margin-left: 20px;
+}
+
 .info__link {
   display: inline-block;
-  margin-top: 25px;
+  align-self: flex-start;
+  margin-top: 30px;
   padding: 6px 12px;
   width: auto;
   border: 4px solid #8B8B9E;
@@ -93,4 +134,108 @@
 
 .info__link:hover {
   background-color: rgba(139, 139, 158, 0.2);
+}
+
+.info__image {
+  padding: 5px;
+  width: calc(350px * 1.36);
+  height: calc(263px * 1.36);
+  border: 5px solid #56E07D;
+  border-radius: 10px;
+}
+
+.info__pathways-row {
+  display: flex;
+  padding: 25px 0;
+}
+
+.info__pathways-description {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 6px 12px;
+  width: 268px;
+  border: 2px solid #DEDEDE;
+  border-radius: 10px;
+  color: #DEDEDE;
+  font-family: "Inconsolata", monospace;
+  font-size: 24px;
+  font-weight: 200;
+  text-align: justify;
+}
+
+.info__pathways-circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-left: 50px;
+  border-radius: 50%;
+  background-color: rgba(0, 128, 54, 0.9);
+}
+
+.info__pathways-circle--pos-2 {
+  position: absolute;
+  top: -65px;
+  left: 0;
+}
+
+.info__pathways-circle-text {
+  position: absolute;
+  top: 21px;
+  left: -10px;
+  width: 170px;
+  text-align: center;
+  color: #F7F7F8;
+  font-family: "Hind", sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.info__pathways-connector {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: calc(50% - 8px);
+  width: 16px;
+  height: 44px;
+  border-radius: 50px;
+  background-color: #C4C4C4;
+}
+
+.info__pathways-horizontal-connector {
+  position: absolute;
+  top: calc(50% - 4px);
+  left: calc(100% + 3px);
+  width: 44px;
+  height: 16px;
+  border-radius: 50px;
+  background-color: #C4C4C4;
+}
+
+.info__pathways--pos-1 {
+  top: -47px;
+}
+
+.info__pathways--pos-2 {
+  top: 41px;
+  left: -10px;
+}
+
+.info__pathways--pos-3 {
+  top: -18px;
+}
+
+.info__pathways--pos-4 {
+  top: 45px;
+}
+
+.info__pathways--pos-5 {
+  top: 0;
+  left: calc(100% + 8px);
+}
+
+.info__pathways--pos-6 {
+  top: -50px;
+}
+
+.info__pathways--pos-7 {
+  top: calc(100% + 7px);
 }

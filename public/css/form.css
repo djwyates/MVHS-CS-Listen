@@ -93,7 +93,8 @@
 }
 
 .form__input--checkbox-square::after {
-  content: "\2714";
+  content: "\2713";
+  margin-top: 5px;
   color: #dedede;
   transform: scale(0);
   transition: 0.15s;

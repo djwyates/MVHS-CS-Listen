@@ -1,20 +1,83 @@
 <%- include("./partials/header") %>
 
 <div class="info">
-  <div class="info__sidebar">
-    <div class="info__sidebar-circle"><div class="info__sidebar-text">P1</div></div>
-    <div class="info__sidebar-circle"><div class="info__sidebar-text">P2</div></div>
-    <div class="info__sidebar-circle"><div class="info__sidebar-text">P3</div></div>
-    <!-- sidebar goes here - create with js -->
-  </div>
+  <div class="info__sidebar"></div>
   <div class="info__content">
-    <div class="info__row">
+    <div class="info__row info__row--full-screen">
       <div class="info__column info__column--small">
-        <h1 class="info__title">Why choose <span class="light-green">computer science?</span></h1>
+        <h1 class="info__title">Computer science<br><span class="light-green">@ Mission Vista</span></h1>
+        <p class="info__description">Mission Vista offers a full computer science pathway for all interested students!</p>
+        <p class="info__description">You can learn more about it on this website.</p>
+        <a class="info__link" href="/#P2">Learn More</a>
+      </div>
+      <div class="info__column info__column--center">
+        <img class="info__image" src="/images/cs-classroom.jpeg" alt="cs_classroom"/>
+      </div>
+    </div>
+    <div class="info__row">
+      <div class="info__column info__column--large">
+        <h1 class="info__title info__title--alt info__title--no-margin">
+          MISSION VISTA'S<br><span class="info__title light-green">Computer Science Pathway</span>
+        </h1>
+        <div class="info__pathways-row">
+          <p class="info__pathways-description">Must have a passing grade in Integrated Math 1</p>
+          <div class="info__pathways-circle">
+            <div class="info__pathways-circle-text">AP COMPUTER SCIENCE PRINCIPLES</div>
+            <div class="info__pathways-connector"></div>
+          </div>
+        </div>
+        <div class="info__pathways-row">
+          <p class="info__pathways-description">10th - 12th graders with a passing grade in Integrated Math 1 or 9th graders who are strong in math</p>
+          <div class="info__pathways-circle">
+            <div class="info__pathways-circle-text info__pathways--pos-2">COMPUTER SCIENCE 1</div>
+            <div class="info__pathways-connector"></div>
+            <div class="info__pathways-horizontal-connector"></div>
+          </div>
+          <div class="info__pathways-circle">
+            <div class="info__pathways-circle-text info__pathways--pos-2">COMPUTER SCIENCE 2</div>
+            <div class="info__pathways-connector info__pathways--pos-1">
+              <div class="info__pathways-horizontal-connector info__pathways--pos-3">
+                <div class="info__pathways-horizontal-connector info__pathways--pos-5">
+                  <div class="info__pathways-circle info__pathways-circle--pos-2">
+                    <div class="info__pathways-circle-text">COMPUTER GAME PROGRAMMING</div>
+                    <div class="info__pathways-connector info__pathways--pos-7"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="info__pathways-connector">
+              <div class="info__pathways-horizontal-connector info__pathways--pos-4">
+                <div class="info__pathways-horizontal-connector info__pathways--pos-5">
+                  <div class="info__pathways-circle info__pathways-circle--pos-2">
+                    <div class="info__pathways-circle-text info__pathways--pos-2">WEB PROGRAMMING</div>
+                    <div class="info__pathways-connector info__pathways--pos-6"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info__pathways-row">
+          <p class="info__pathways-description">Must have a passing grade in Integrated Math 2 (counts as a third year in math)</p>
+          <div class="info__pathways-circle">
+            <div class="info__pathways-circle-text info__pathways--pos-2">INTRO TO DATA SCIENCE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info__row">
+      <div class="info__column">
+        <h1 class="info__title">Have any<br><span class="light-green">questions for us?</span></h1>
+        <p class="info__description">// You can visit the Q+A to ask current students your questions</p>
+        <p class="info__description">// You can visit the Demos page to view demonstrations of projects from each class</p>
         <p class="info__description">
-          Explore careers, resources, and other opportunities.
+          // You can visit the Further Info page to view general information about this program, computer science, and career opportunities
         </p>
-        <a class="info__link" href="#" >Resources</a>
+        <div class="info__links">
+          <a class="info__link" href="/faq">View Q/A</a>
+          <a class="info__link" href="/demos">View Demos</a>
+          <a class="info__link" href="#">Further Info</a>
+        </div>
       </div>
     </div>
   </div>

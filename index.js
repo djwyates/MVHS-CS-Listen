@@ -8,7 +8,7 @@ const express = require("express"),
       passport = require("passport"),
       LocalStrategy = require("passport-local"),
       expressSession = require("express-session"),
-      credentials = require("./credentials");
+      credentials = require("./config/credentials");
 
 // requiring routes
 const indexRoutes = require("./routes/index"),
@@ -25,16 +25,7 @@ mongoose.connect("mongodb://localhost:27017/cs-listen", {useCreateIndex: true, u
 app.use(expressSession({secret: credentials.sessionSecret, resave: false, saveUninitialized: false, cookie: {maxAge: 3*24*60*60*1000}}));
 app.use(passport.initialize());
 app.use(passport.session());
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
-passport.use(new LocalStrategy(function(username, password, done) {
-  if (username.toLowerCase() == "admin" && password == credentials.adminPassword) return done(null, {isAdmin: true});
-  else return done(null, false);
-}));
+require("./config/passport-setup");
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   res.locals.query = req.query;
