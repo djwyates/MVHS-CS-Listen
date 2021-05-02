@@ -2,29 +2,76 @@
 
 <div class="faq">
   <a class="faq__ask-question-link" href="/faq/new">Ask a Question</a>
-  <% faqs.filter(f => f.isPublic).sort((a, b) => a.order < b.order ? 1 : -1).forEach(function(faq) { %>
-    <div class="faq__accordion">
-      <div class="faq__question"><%- faq.question %><img class="faq__plus-or-minus-sign" src="/images/plus-sign.svg" alt="plus_or_minus_sign"></div>
-      <div class="faq__accordion-body"><p class="faq__answer"><%- faq.answer %></p></div>
-    </div>
-  <% }); %>
+  <% faqs.filter(f => f.isPublic).sort((a, b) => b.order < a.order ? 1 : -1).forEach(function(faq) {
+    getFaqHTML(faq);
+  }); %>
+  <% if (user && user.isAdmin) { %>
+    <h1 class="faq__header">Non-Public Questions &#183; For Admins Only</h1>
+    <% faqs.filter(f => !f.isPublic).sort((a, b) => b.order < a.order ? 1 : -1).forEach(function(faq) {
+      getFaqHTML(faq);
+    }); %>
+  <% } %>
 </div>
+
+<% function getFaqHTML(faq) { %>
+  <div class="faq__accordion">
+    <div class="faq__question"><%= faq.question %>
+      <div class="faq__icons">
+        <% if (user && user.isAdmin) { %>
+          <img class="faq__edit" data-href="/faq/<%= faq._id %>/edit" src="/images/icons/edit.svg" alt="edit"/>
+          <img class="faq__delete" data-href="/faq/<%= faq._id %>?_method=delete" src="/images/icons/delete.svg" alt="delete"/>
+        <% } %>
+        <img src="/images/icons/plus-sign.svg" alt="plus_or_minus_sign">
+      </div>
+    </div>
+    <div class="faq__accordion-body">
+      <p class="faq__answer"><% if (faq.answer) { %><%= faq.answer %><% } else { %>// Not yet answered<% } %></p>
+    </div>
+  </div>
+<% } %>
 
 <script>
   const accordions = document.querySelectorAll(".faq__accordion");
   if (accordions) {
     accordions.forEach(function(accordion) {
-      accordion.addEventListener("click", function() {
+      accordion.addEventListener("click", function(e) {
+        if (e.target.classList.contains("faq__edit") || e.target.classList.contains("faq__delete") || e.target.nodeName == "BUTTON") return;
         var question = accordion.children[0];
-        var plusOrMinusSign = question.children[0];
+        var plusOrMinusSign = question.children[0].children[2];
         var accordionBody = accordion.children[1];
         question.classList.toggle("faq__question--purple");
         if (question.classList.contains("faq__question--purple")) {
           accordionBody.style.maxHeight = accordionBody.scrollHeight + "px";
-          plusOrMinusSign.src = "/images/minus-sign.svg";
+          plusOrMinusSign.src = "/images/icons/minus-sign.svg";
         } else {
           accordionBody.style.maxHeight = 0;
-          plusOrMinusSign.src = "/images/plus-sign.svg";
+          plusOrMinusSign.src = "/images/icons/plus-sign.svg";
+        }
+      });
+    });
+  }
+  const editLinks = document.querySelectorAll(".faq__edit");
+  if (editLinks) {
+    editLinks.forEach(function(editLink) {
+      editLink.addEventListener("click", function() {
+        window.location.assign(editLink.dataset.href);
+      });
+    });
+  }
+  const deleteButtons = document.querySelectorAll(".faq__delete");
+  if (deleteButtons) {
+    deleteButtons.forEach(function(deleteButton) {
+      deleteButton.addEventListener("click", function() {
+        var request = new Request(deleteButton.dataset.href, {method: "POST"});
+        if (window.confirm("Are you sure you want to delete this Q/A?")) {
+          fetch(request).then(function(response) {
+            if (response.status === 200) return window.location.assign(response.url);
+            throw new Error("An unexpected error occurred when making a request to delete the faq.");
+          }).then(function(response) {
+            console.debug(response);
+          }).then(function(error) {
+            console.error(error);
+          });
         }
       });
     });

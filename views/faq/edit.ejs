@@ -1,0 +1,33 @@
+<%- include("../partials/header") %>
+
+<a class="form__back-link" href="/faq">Back to Q/A</a>
+<form action="/faq/<%= faq._id %>?_method=put" method="post">
+  <div class="form__item">
+    <label class="form__label" for="question">Question</label>
+    <input class="form__input" type="text" name="question" maxlength="200" placeholder="Max. 200 characters" value="<%= faq.question %>" required/>
+  </div>
+  <div class="form__item">
+    <label class="form__label" for="email">Email</label>
+    <input class="form__input" type="text" name="email" placeholder="Optional" value="<%= faq.email %>"/>
+  </div>
+  <div class="form__item">
+    <label class="form__label" for="answer">Answer</label>
+    <textarea class="form__input" type="text" name="answer" maxlength="400" placeholder="Max. 400 characters"><%= faq.answer %></textarea>
+  </div>
+  <div class="form__item">
+    <label class="form__label" for="order">Order to be displayed on Q/A</label>
+    <input class="form__input" type="text" name="order" placeholder="Optional: For admins only" value="<%= faq.order %>"/>
+  </div>
+  <div class="form__item">
+    <label class="form__label form__label--checkbox" for="isPublic">
+      <input class="form__input--checkbox" id="isPublic" type="checkbox" name="isPublic" value="true" <% if (faq.isPublic) { %>checked<% } %>/>
+      <div class="form__input--checkbox-square"></div>
+      <span style="margin-top: 6px;">Publicly display on Q/A</span>
+    </label>
+  </div>
+  <div class="form__item">
+    <button class="form__submit-button" type="submit">Submit</button>
+  </div>
+</form>
+
+<%- include("../partials/footer") %>

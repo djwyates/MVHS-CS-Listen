@@ -2,7 +2,17 @@
 
 <div class="demo">
   <div class="demo__video-section">
-    <a class="demo__link-back" href="/demos">Back to <%- demo.category %></a>
+    <div class="demo__links">
+      <a class="demo__link" href="/demos">Back to <%- demo.category %></a>
+      <% if (user && user.isAdmin) { %>
+        <span class="demo__link-divider"></span>
+        <a class="demo__link" href="/demos/<%= demo._id %>/edit">Edit</a>
+        <span class="demo__link-divider"></span>
+        <form action="/demos/<%= demo._id %>?_method=delete" method="post" onsubmit="return confirm('Are you sure you want to delete this demo?')">
+          <button class="demo__form-link" type="submit">Delete</button>
+        </form>
+      <% } %>
+    </div>
     <div id="player"></div>
     <% if (demo.tags && Array.isArray(demo.tags) && demo.tags.length > 0) { %>
       <div class="demo__tags">
@@ -14,7 +24,6 @@
     <h1 class="demo__title"><%- demo.title %></h1>
     <p class="demo__description"><%- demo.description %></p>
   </div>
-  <!-- (possible addition) add a section for more information related to the deomonstration -->
 </div>
 
 <script>

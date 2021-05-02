@@ -114,13 +114,37 @@
   width: 704px;
 }
 
-.demo__link-back {
+.demo__links {
+  display: flex;
+}
+
+.demo__link {
   margin-bottom: 15px;
 	color: #9393F1;
 	font-family: "Hind", sans-serif;
 	font-size: 20px;
 	font-weight: 400;
 	text-decoration: none;
+}
+
+.demo__link-divider::after {
+  content: "\00B7";
+  margin-left: 5px;
+  margin-right: 5px;
+	color: #9393F1;
+	font-family: "Hind", sans-serif;
+	font-size: 20px;
+}
+
+.demo__form-link {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #9393F1;
+	font-family: "Hind", sans-serif;
+	font-size: 20px;
+	font-weight: 400;
+  cursor: pointer;
 }
 
 .demo__title {

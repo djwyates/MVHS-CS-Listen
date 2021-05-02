@@ -5,7 +5,7 @@
     <h1 id="demonstrations" class="demos__category-title">
       Demonstrations
       <% if (user && user.isAdmin) { %>
-        <a href="/demos/new"><img class="test" width="17" height="17" src="/images/plus-sign-2.svg" alt="plus_sign"></a>
+        <a href="/demos/new"><img class="test" width="17" height="17" src="/images/icons/plus-sign-2.svg" alt="plus_sign"></a>
       <% } %>
     </h1>
     <div class="demos__cards">
@@ -16,7 +16,7 @@
     <h1 id="recordings" class="demos__category-title">
       Recordings
       <% if (user && user.isAdmin) { %>
-        <a href="/demos/new?c=recordings"><img class="test" width="17" height="17" src="/images/plus-sign-2.svg" alt="plus_sign"></a>
+        <a href="/demos/new?c=recordings"><img class="test" width="17" height="17" src="/images/icons/plus-sign-2.svg" alt="plus_sign"></a>
       <% } %>
     </h1>
     <div class="demos__cards">
@@ -29,7 +29,7 @@
       <h1 id="other" class="demos__category-title">
         Other
         <% if (user && user.isAdmin) { %>
-          <a href="/demos/new?c=other"><img class="test" width="17" height="17" src="/images/plus-sign-2.svg" alt="plus_sign"></a>
+          <a href="/demos/new?c=other"><img class="test" width="17" height="17" src="/images/icons/plus-sign-2.svg" alt="plus_sign"></a>
         <% } %>
       </h1>
       <div class="demos__cards">
@@ -41,12 +41,12 @@
 
 <% function getCardHTML(demo) { %>
   <div class="demos__card">
-    <img class="demos__image" src="/images/demos/<%- demo.imageFileName %>" alt="othello"/>
-    <img class="demos__play-button" src="/images/play-button.svg" alt="play_button"/>
-    <h2 class="demos__card-title"><%- demo.title %></h2>
-    <h3 class="demos__card-subtitle"><%- demo.subtitle %></h3>
-    <p class="demos__card-description"><%- demo.description %></p>
-    <a href="/demos/<%- demo._id %>"><span class="div-link"></span></a>
+    <img class="demos__image" src="/images/demos/<%= demo.imageFileName %>" alt="othello"/>
+    <img class="demos__play-button" src="/images/icons/play-button.svg" alt="play_button"/>
+    <h2 class="demos__card-title"><%= demo.title %></h2>
+    <h3 class="demos__card-subtitle"><%= demo.subtitle %></h3>
+    <p class="demos__card-description"><%= demo.description %></p>
+    <a href="/demos/<%= demo._id %>"><span class="div-link"></span></a>
   </div>
 <% } %>
 

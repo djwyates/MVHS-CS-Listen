@@ -12,7 +12,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
-  bcrypt.compare(password, credentials.adminPassword, function(err, isCorrectPassword) {
+  bcrypt.compare(password, credentials.hashedAdminPassword, function(err, isCorrectPassword) {
     if (username.toLowerCase() == "admin" && isCorrectPassword) return done(null, {isAdmin: true});
     else return done(null, false);
   });

@@ -17,7 +17,17 @@
   background-color: rgba(147, 147, 241, 0.1);
 }
 
+.faq__header {
+  margin-top: 30px;
+  display: inline-block;
+	color: #9393F1;
+	font-family: "Hind", sans-serif;
+	font-size: 24px;
+	font-weight: 400;
+}
+
 .faq__accordion {
+  position: relative;
   padding: 16px 16px 11px 16px;
   margin-top: 25px;
   width: 100%;
@@ -52,8 +62,17 @@
   color: #9393F1;
 }
 
-.faq__plus-or-minus-sign {
-  margin: 0 2px 2px auto;
+.faq__icons {
+  display: flex;
+  margin-left: auto;
+}
+
+.faq__icons > img:first-of-type {
+  margin-left: 15px;
+}
+
+.faq__icons > img:not(:first-of-type) {
+  margin-left: 25px;
 }
 
 .faq__answer {

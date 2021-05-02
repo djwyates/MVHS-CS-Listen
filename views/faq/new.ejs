@@ -4,7 +4,7 @@
 <form action="/faq" method="post">
   <div class="form__item <% if (!user || !user.isAdmin) { %>form__item--more-space<% } %>">
     <label class="form__label <% if (!user || !user.isAdmin) { %>form__label--more-space<% } %>" for="question">What is your question?</label>
-    <input class="form__input" type="text" name="question" placeholder="Max. 200 characters" required/>
+    <input class="form__input" type="text" name="question" maxlength="200" placeholder="Max. 200 characters" required/>
   </div>
   <div class="form__item <% if (!user || !user.isAdmin) { %>form__item--more-space<% } %>">
     <label class="form__label <% if (!user || !user.isAdmin) { %>form__label--more-space<% } %>" for="email">Email: We will send you our answer!</label>
@@ -13,7 +13,7 @@
   <% if (user && user.isAdmin) { %>
     <div class="form__item">
       <label class="form__label" for="answer">What is the answer to this question?</label>
-      <input class="form__input" type="text" name="answer" placeholder="Optional: For admins only"/>
+      <textarea class="form__input" type="text" name="answer" maxlength="400" placeholder="Optional: For admins only | Max. 400 characters"></textarea>
     </div>
     <div class="form__item">
       <label class="form__label" for="order">Order to be displayed on Q/A</label>

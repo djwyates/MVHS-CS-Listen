@@ -23,7 +23,7 @@ router.post("/", auth.isAdmin, function(req, res) {
     title: req.sanitize(req.body.title).trim(),
     subtitle: req.sanitize(req.body.subtitle).trim(),
     description: req.sanitize(req.body.description).trim(),
-    tags: req.sanitize(req.body.tags).split(",").map(t => t.trim()),
+    tags: req.body.tags ? req.sanitize(req.body.tags).split(",").map(t => t.trim()) : null,
     imageFileName: req.sanitize(req.body.imageFileName).trim(),
     videoID: req.sanitize(req.body.videoID).trim()
   };
@@ -41,6 +41,54 @@ router.get("/:id", function(req, res) {
     }
     if (!demo) return res.redirect("/demos");
     res.render("demos/show", {demo: demo});
+  });
+});
+
+router.get("/:id/edit", auth.isAdmin, function(req, res) {
+  Demo.findById(req.params.id, function(err, demo) {
+    if (err) {
+      console.error(err);
+      return res.redirect("/demos");
+    }
+    if (!demo) return res.redirect("/demos");
+    res.render("demos/edit", {demo: demo});
+  });
+});
+
+router.put("/:id", auth.isAdmin, function(req, res) {
+  Demo.findById(req.params.id, function(err, demo) {
+    if (err) {
+      console.error(err);
+      return res.redirect("/demos");
+    }
+    if (!demo) return res.redirect("/demos");
+    var editedDemo = {
+      category: req.sanitize(req.body.category).trim(),
+      title: req.sanitize(req.body.title).trim(),
+      subtitle: req.sanitize(req.body.subtitle).trim(),
+      description: req.sanitize(req.body.description).trim(),
+      tags: req.body.tags ? req.sanitize(req.body.tags).split(",").map(t => t.trim()) : null,
+      imageFileName: req.sanitize(req.body.imageFileName).trim(),
+      videoID: req.sanitize(req.body.videoID).trim()
+    };
+    Demo.findByIdAndUpdate(req.params.id, editedDemo, function(err, updatedDemo) {
+      if (err) console.error(err);
+      res.redirect("/demos/" + req.params.id);
+    });
+  });
+});
+
+router.delete("/:id", auth.isAdmin, function(req, res) {
+  Demo.findById(req.params.id, function(err, demo) {
+    if (err) {
+      console.error(err);
+      return res.redirect("/demos");
+    }
+    if (!demo) return res.redirect("/demos");
+    Demo.findByIdAndDelete(req.params.id, function(err, deletedDemo) {
+      if (err) console.error(err);
+      res.redirect("/demos");
+    });
   });
 });
 
