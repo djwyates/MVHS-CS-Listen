@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 });
 
 email.send = function(to, subject, message) {
-  Settings.findOne({"api.gmail.user": credentials.api.gmail.user}, function(err, settings) {
+  Settings.findOne({active: true, "api.gmail.user": credentials.api.gmail.user}, function(err, settings) {
     if (!settings || !settings.api || !settings.api.gmail || !settings.api.gmail.refreshToken)
       throw new Error("No refresh token found in the MongoDB settings for gmail user " + credentials.api.gmail.user);
     var emailToSend = {

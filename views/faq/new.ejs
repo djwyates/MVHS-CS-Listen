@@ -4,11 +4,11 @@
 <form action="/faq" method="post">
   <div class="form__item <% if (!user || !user.isAdmin) { %>form__item--more-space<% } %>">
     <label class="form__label <% if (!user || !user.isAdmin) { %>form__label--more-space<% } %>" for="question">What is your question?</label>
-    <input class="form__input" type="text" name="question" maxlength="200" placeholder="Max. 200 characters" required/>
+    <input class="form__input" type="text" name="question" minlength="3" maxlength="200" placeholder="Max. 200 characters" required/>
   </div>
   <div class="form__item <% if (!user || !user.isAdmin) { %>form__item--more-space<% } %>">
     <label class="form__label <% if (!user || !user.isAdmin) { %>form__label--more-space<% } %>" for="email">Email: We will send you our answer!</label>
-    <input class="form__input" type="text" name="email" placeholder="Optional"/>
+    <input class="form__input" type="text" name="email" maxlength="320" placeholder="Optional"/>
   </div>
   <% if (user && user.isAdmin) { %>
     <div class="form__item">

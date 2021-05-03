@@ -10,7 +10,7 @@ const oauth2Client = new google.auth.OAuth2(
 
 oauth2Client.on("tokens", function(tokens) {
   if (tokens.refresh_token) {
-    Settings.findOneAndUpdate({"api.gmail.user": credentials.api.gmail.user}, {"api.gmail.refreshToken": tokens.refresh_token},
+    Settings.findOneAndUpdate({active: true, "api.gmail.user": credentials.api.gmail.user}, {"api.gmail.refreshToken": tokens.refresh_token},
     function(err, settings) {
       if (err) console.error(err);
     });

@@ -21,11 +21,11 @@ router.get("/logout", function(req, res) {
   res.redirect("/");
 });
 
-router.get("/google/login",   function(req, res) {
+router.get("/google/login", auth.isAdmin, function(req, res) {
   res.redirect(googleapis.getOAuth2URL());
 });
 
-router.get("/google/oauth2callback", function(req, res) {
+router.get("/google/oauth2callback", auth.isAdmin, function(req, res) {
   if (!req.query.code) return res.redirect("back");
   googleapis.retrieveAccessToken(req.query.code).then(function(tokens) {
     res.redirect("/");

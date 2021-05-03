@@ -1,6 +1,7 @@
 const express = require("express"),
       app = express(),
       bodyParser = require("body-parser"),
+      flash = require("connect-flash"),
       expressSanitizer = require("express-sanitizer"),
       favicon = require("serve-favicon"),
       methodOverride = require("method-override"),
@@ -13,11 +14,13 @@ const express = require("express"),
 // requiring routes
 const indexRoutes = require("./routes/index"),
       demoRoutes = require("./routes/demos"),
-      faqRoutes = require("./routes/faq");
+      faqRoutes = require("./routes/faq"),
+      userRoutes = require("./routes/users");
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(flash());
 app.use(expressSanitizer());
 app.use(favicon(__dirname + "/public/images/favicon.ico"));
 app.use(methodOverride("_method"));
@@ -27,13 +30,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./config/passport-setup");
 app.use(function(req, res, next) {
+  res.locals.flash = {success: req.flash("success"), info: req.flash("info"), error: req.flash("error")};
   res.locals.user = req.user;
   res.locals.query = req.query;
   next();
 });
 
-User.create({username: "dyates", password: "dyates", email: "djfallbrookca@gmail.com", emailNotifsOn: true, isAdmin: true}, function(err, created){});
-
+app.use("/users", userRoutes);
 app.use("/faq", faqRoutes);
 app.use("/demos", demoRoutes);
 app.use("/", indexRoutes);

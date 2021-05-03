@@ -4,11 +4,12 @@
 <form action="/faq/<%= faq._id %>?_method=put" method="post">
   <div class="form__item">
     <label class="form__label" for="question">Question</label>
-    <input class="form__input" type="text" name="question" maxlength="200" placeholder="Max. 200 characters" value="<%= faq.question %>" required/>
+    <input class="form__input" type="text" name="question" minlength="3" maxlength="200" placeholder="Max. 200 characters"
+    value="<%= faq.question %>" required/>
   </div>
   <div class="form__item">
     <label class="form__label" for="email">Email</label>
-    <input class="form__input" type="text" name="email" placeholder="Optional" value="<%= faq.email %>"/>
+    <input class="form__input" type="text" name="email" maxlength="320" placeholder="Optional" value="<%= faq.email %>"/>
   </div>
   <div class="form__item">
     <label class="form__label" for="answer">Answer</label>
