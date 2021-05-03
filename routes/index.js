@@ -1,5 +1,7 @@
 const express = require("express"),
       router = express.Router(),
+      googleapis = require("../services/googleapis"),
+      auth = require("../middleware/auth"),
       passport = require("passport");
 
 router.get("/", function(req, res) {
@@ -17,6 +19,17 @@ router.post("/login", passport.authenticate("local", {failureRedirect: "/login"}
 router.get("/logout", function(req, res) {
   req.logout();
   res.redirect("/");
+});
+
+router.get("/google/login",   function(req, res) {
+  res.redirect(googleapis.getOAuth2URL());
+});
+
+router.get("/google/oauth2callback", function(req, res) {
+  if (!req.query.code) return res.redirect("back");
+  googleapis.retrieveAccessToken(req.query.code).then(function(tokens) {
+    res.redirect("/");
+  });
 });
 
 router.get("*", function(req, res) {

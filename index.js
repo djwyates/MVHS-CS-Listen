@@ -32,6 +32,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+User.create({username: "dyates", password: "dyates", email: "djfallbrookca@gmail.com", emailNotifsOn: true, isAdmin: true}, function(err, created){});
+
 app.use("/faq", faqRoutes);
 app.use("/demos", demoRoutes);
 app.use("/", indexRoutes);

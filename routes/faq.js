@@ -1,7 +1,9 @@
 const express = require("express"),
       router = express.Router(),
+      email = require("../services/email"),
       auth = require("../middleware/auth"),
-      Faq = require("../models/faq");
+      Faq = require("../models/faq"),
+      User = require("../models/user");
 
 router.get("/", function(req, res) {
   Faq.find({}, function(err, faqs) {
@@ -27,8 +29,18 @@ router.post("/", function(req, res) {
     newFaq.answer = req.body.answer ? req.sanitize(req.body.answer).trim() : null;
     newFaq.isPublic = req.body.isPublic;
     if (req.body.order) newFaq.order = req.sanitize(req.body.order).trim();
+  } else {
+    User.find({}, function(err, users) {
+      var emailRecipients = [];
+      users.forEach(function(user) {
+        if (user.isAdmin && user.email && user.emailNotifsOn)
+          emailRecipients.push(user.email);
+      });
+      email.send(emailRecipients.join(), "CS Listen: New Question", "This is an automated email to inform you that a new question has been asked"
+      + " on the CS Listen website.\n\nQuestion: " + newFaq.question + "\nEmail: " + (newFaq.email ? newFaq.email : "None provided"));
+    });
   }
-  if (!newFaq.question || newFaq.question.length == 0 || newFaq.question.length > 200)
+  if (!newFaq.question || newFaq.question.length == 0 || newFaq.question.length > 200 || (newFaq.answer && newFaq.answer.length > 400))
     return res.redirect("/faq/new");
   Faq.create(newFaq, function(err, faq) {
     if (err) console.error(err);

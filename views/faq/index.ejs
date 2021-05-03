@@ -31,6 +31,7 @@
 <% } %>
 
 <script>
+  /* accordion expand/contract */
   const accordions = document.querySelectorAll(".faq__accordion");
   if (accordions) {
     accordions.forEach(function(accordion) {
@@ -50,6 +51,7 @@
       });
     });
   }
+  /* edit link */
   const editLinks = document.querySelectorAll(".faq__edit");
   if (editLinks) {
     editLinks.forEach(function(editLink) {
@@ -58,6 +60,7 @@
       });
     });
   }
+  /* delete button */
   const deleteButtons = document.querySelectorAll(".faq__delete");
   if (deleteButtons) {
     deleteButtons.forEach(function(deleteButton) {
