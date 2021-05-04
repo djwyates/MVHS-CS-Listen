@@ -1,4 +1,24 @@
     </div>
+    <footer class="footer">
+      <div class="footer__section">
+        <p class="footer__text">To learn more about the CS Listen program, you can<br>visit the
+          <a class="footer__text" href="https://cslisten.ucsd.edu/">UCSD CS Listen website</a>
+        </p>
+      </div>
+      <div class="footer__section footer__section--right">
+        <h1 class="footer__text footer__text--bold">Admin Panel</h1>
+        <% if (user && user.isAdmin) {  %>
+          <a class="footer__link" href="/users">View Admin List</a>
+          <div>
+            <a class="footer__link" href="/users/<%= user._id %>/edit">Account Settings</a>
+            <span class="footer__dot-divider"></span>
+            <a class="footer__link" href="/logout">Logout</a>
+          </div>
+        <% } else { %>
+          <a class="footer__link" href="/login">Login</a>
+        <% } %>
+      </div>
+    </footer>
   </body>
   <script src="/javascript/main.js"></script>
   <script src="/javascript/info.js"></script>

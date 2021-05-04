@@ -1,15 +1,17 @@
-var sidebar = document.querySelector(".info__sidebar");
+const sidebar = document.querySelector(".info__sidebar");
 if (sidebar) {
-  var sidebarMaxHeight = window.innerHeight - navHeight - bodywrapperMarginTop - bodywrapperMarginBottom - 50;
+  const sidebarMaxHeight = window.innerHeight - getElementHeight(nav, {includeMargins: true}) - footerMarginTop;
+  document.querySelector(".info__row--full-screen").style.height = Math.max(sidebarMaxHeight, 340) - 70 + "px";
+  /* construct the sidebar */
   var sidebarLineHeight = sidebarMaxHeight - document.querySelectorAll(".info__row").length * 37; /* 37px is height of a sidebar circle */
   var totalInfoHeight = 0;
-  var rows = document.querySelectorAll(".info__row"), rowHeight = 0;
-  for (var i = 0; i < rows.length-1; i++) {
-    totalInfoHeight += getRowHeight(rows[i]); /* besides the last row */
-  }
+  const rows = document.querySelectorAll(".info__row");
+  var rowHeight = 0;
+  for (var i = 0; i < rows.length-1; i++)
+    totalInfoHeight += getElementHeight(rows[i], {includeMargins: true}); /* besides the last row */
   for (var i = 0; i < rows.length; i++) {
     rows[i].id = "P" + (i + 1);
-    var propOfTotalHeight = getRowHeight(rows[i]) / totalInfoHeight;
+    var propOfTotalHeight = getElementHeight(rows[i], {includeMargins: true}) / totalInfoHeight;
     var lineHeight = Math.floor(propOfTotalHeight * sidebarLineHeight);
     var sidebarCircle = document.createElement("div");
     sidebarCircle.classList.add("info__sidebar-circle");
@@ -32,15 +34,17 @@ if (sidebar) {
     sidebarCircle.appendChild(sidebarText);
     sidebar.appendChild(sidebarCircle);
   }
-}
-
-function getRowHeight(row) {
-  var rowHeight = 0, rowMarginTop = 0, rowMarginBottom = 0;
-  rowHeight = window.getComputedStyle(row).height;
-  rowHeight = parseInt(rowHeight.substring(0, rowHeight.length - 2));
-  rowMarginTop = window.getComputedStyle(row).marginTop;
-  rowMarginTop = parseInt(rowMarginTop.substring(0, rowMarginTop.length - 2));
-  rowMarginBottom = window.getComputedStyle(row).marginBottom;
-  rowMarginBottom = parseInt(rowMarginBottom.substring(0, rowMarginBottom.length - 2));
-  return rowHeight + rowMarginTop + rowMarginBottom;
+  /* change the sidebar's positioning when the footer is in view */
+  const sidebarYOffset = sidebar.offsetTop;
+  const maxYPosOfSidebar = getTotalDocumentHeight()-getElementHeight(footer, {includeMargins: true})-sidebarMaxHeight;
+  window.onscroll = function() {
+    var yScrollDistance = window.pageYOffset;
+    if (yScrollDistance >= maxYPosOfSidebar-sidebarYOffset) {
+      sidebar.style.position = "absolute";
+      sidebar.style.top = maxYPosOfSidebar + "px";
+    } else {
+      sidebar.style.position = "fixed";
+      sidebar.style.top = sidebarYOffset + "px";
+    }
+  }
 }

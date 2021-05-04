@@ -127,7 +127,7 @@
 	text-decoration: none;
 }
 
-.demo__link-divider::after {
+.demo__dot-divider::after {
   content: "\00B7";
   margin-left: 5px;
   margin-right: 5px;

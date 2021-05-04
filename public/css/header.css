@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   padding: 28px 120px;
+  margin-bottom: 40px;
 }
 
 .nav__title {

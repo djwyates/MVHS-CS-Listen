@@ -46,12 +46,10 @@
 }
 
 .info__content > .info__row:not(:first-of-type) {
-  margin-top: 150px;
+  margin-top: 200px;
 }
 
 .info__row--full-screen {
-  height: 475px;
-  margin-bottom: 200px;
   align-items: center;
 }
 

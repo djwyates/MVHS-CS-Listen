@@ -38,7 +38,7 @@
       accordion.addEventListener("click", function(e) {
         if (e.target.classList.contains("faq__edit") || e.target.classList.contains("faq__delete") || e.target.nodeName == "BUTTON") return;
         var question = accordion.children[0];
-        var plusOrMinusSign = question.children[0].children[2];
+        var plusOrMinusSign = question.children[0].children[2] || question.children[0].children[0];
         var accordionBody = accordion.children[1];
         question.classList.toggle("faq__question--purple");
         if (question.classList.contains("faq__question--purple")) {
