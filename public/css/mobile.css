@@ -1,87 +1,22 @@
-@media only screen and (max-width: 1250px) {
-  .body-wrapper {
-  	margin: 40px 100px 60px 100px;
-  }
-  .nav {
-    padding: 28px 100px;
-  }
-  .demos__category-title::after {
-  	width: calc(100vw - 100% - 116px);
-  }
-}
-
-@media only screen and (max-width: 1150px) {
-  .body-wrapper {
-  	margin: 40px 80px 60px 80px;
-  }
-  .nav {
-    padding: 28px 80px;
-  }
-  .demos__category-title::after {
-  	width: calc(100vw - 100% - 86px);
-  }
-}
-
-@media only screen and (max-width: 1050px) {
-  .body-wrapper {
-  	margin: 40px 60px 60px 60px;
-  }
-  .nav {
-    padding: 28px 60px;
-  }
-  .demos__category-title::after {
-  	width: calc(100vw - 100% - 66px);
-  }
-}
-
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1000px) {
   .nav__link:not(:first-of-type) {
     margin-left: 75px;
   }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 875px) {
   .nav__link:not(:first-of-type) {
-    margin-left: 65px;
-  }
-}
-
-@media only screen and (max-width: 850px) {
-  .body-wrapper {
-  	margin: 40px 50px 60px 50px;
-  }
-  .nav {
-    padding: 28px 50px;
-  }
-  .demos__category-title::after {
-  	width: calc(100vw - 100% - 56px);
-  }
-  .nav__link:not(:first-of-type) {
-    margin-left: 55px;
+    margin-left: 50px;
   }
 }
 
 @media only screen and (max-width: 760px) {
   .body-wrapper {
-  	margin: 40px 30px 60px 30px;
+    margin: 0 5%;
   }
   .nav {
-    padding: 28px 30px;
-  }
-  .demos__category-title::after {
-  	width: calc(100vw - 100% - 36px);
-  }
-}
-
-@media only screen and (max-width: 730px) {
-  .body-wrapper {
-  	margin: 40px 20px 60px 20px;
-  }
-  .nav {
-    padding: 28px 20px;
-  }
-  .demos__category-title::after {
-  	width: calc(100vw - 100% - 36px);
+    padding: 28px 5%;
+    margin-bottom: 10px;
   }
   .nav__title {
     font-size: 32px;
@@ -91,5 +26,41 @@
   }
   .nav__menu {
     display: block;
+  }
+  /* if sidebar will be used on mobile */
+  .info__sidebar-circle {
+    width: 29px;
+    height: 29px;
+  }
+  .info__sidebar-text {
+    font-size: 20px;
+  }
+  .info__sidebar-line {
+    top: 29px;
+    left: calc(29px / 2 - 2px);
+  }
+  .info__sidebar {
+    margin-left: 0;
+  }
+  .info__content {
+    margin-left: 4%;
+  }
+  /* if sidebar will not be used on mobile */
+  .info__sidebar {
+    display: none;
+  }
+  .info__content {
+    margin-left: 0;
+  }
+  /* ------------------------------------- */
+  .demos__cards {
+    margin-left: 10px;
+  }
+  .footer {
+    flex-direction: column;
+  }
+  .footer__section--right {
+    padding: 20px 30px 40px 30px;
+    text-align: center;
   }
 }

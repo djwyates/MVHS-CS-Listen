@@ -4,7 +4,7 @@
 
 .info__sidebar {
   position: fixed;
-  margin-left: 65px;
+  margin-left: 3.5%;
 }
 
 .info__sidebar-circle {
@@ -37,7 +37,7 @@
 }
 
 .info__content {
-  margin-left: 127px;
+  margin-left: calc(7.5% + 75px);
 }
 
 .info__row {
@@ -60,7 +60,7 @@
   width: 600px;
 }
 
-.info__column {
+.info__column:not(:first-of-type) {
   margin-left: 75px;
 }
 

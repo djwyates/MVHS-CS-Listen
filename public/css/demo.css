@@ -28,13 +28,10 @@
   border: 1px solid rgba(97, 97, 210, 0.8);
 }
 
-.demos__category-title::after {
-  content: "";
-	display: block;
+.demos__category-line {
 	position: absolute;
 	top: calc(50% - 1px);
 	left: 100%;
-	width: calc(100vw - 100% - 136px);
 	height: 1px;
 	background-color: rgba(97, 97, 210, 0.8);
 }

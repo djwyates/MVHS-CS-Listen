@@ -46,7 +46,7 @@ router.post("/", function(req, res) {
       });
     });
   }
-  if (!newFaq.question || newFaq.question.length <= 3 || newFaq.question.length > 200 || newFaq.email.length > 320
+  if (!newFaq.question || newFaq.question.length <= 3 || newFaq.question.length > 200 || newFaq.email && newFaq.email.length > 320
       || (newFaq.answer && newFaq.answer.length > 400))
     return res.redirect("/faq/new");
   Faq.create(newFaq, function(err, faq) {
