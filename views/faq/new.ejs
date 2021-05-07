@@ -8,7 +8,7 @@
   </div>
   <div class="form__item <% if (!user || !user.isAdmin) { %>form__item--more-space<% } %>">
     <label class="form__label <% if (!user || !user.isAdmin) { %>form__label--more-space<% } %>" for="email">Email: We will send you our answer!</label>
-    <input class="form__input" type="text" name="email" maxlength="320" placeholder="Optional"/>
+    <input class="form__input" type="email" name="email" maxlength="320" placeholder="Optional"/>
   </div>
   <% if (user && user.isAdmin) { %>
     <div class="form__item">

@@ -8,7 +8,11 @@
       <div class="footer__section footer__section--right">
         <h1 class="footer__text footer__text--bold">Admin Panel</h1>
         <% if (user && user.isAdmin) {  %>
-          <a class="footer__link" href="/users">View Admin List</a>
+          <div>
+            <a class="footer__link" href="/users">View Admin List</a>
+            <span class="footer__dot-divider"></span>
+            <a class="footer__link" href="/users/new">New Admin</a>
+          </div>
           <div>
             <a class="footer__link" href="/users/<%= user._id %>/edit">Account Settings</a>
             <span class="footer__dot-divider"></span>

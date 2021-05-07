@@ -17,7 +17,7 @@ router.get("/", auth.isAdmin, function(req, res) {
 });
 
 router.get("/new", auth.isAdmin, function(req, res) {
-  res.render("user/new");
+  res.render("users/new");
 });
 
 router.post("/", auth.isAdmin, function(req, res) {
@@ -28,11 +28,16 @@ router.post("/", auth.isAdmin, function(req, res) {
     email: req.sanitize(req.body.email).trim(),
     emailNotifsOn: req.body.emailNotifsOn,
     emailIsVerified: false,
-    emailVerificationCode: shortid.generate,
+    emailVerificationCode: shortid.generate(),
     isAdmin: true
   };
   User.create(newUser, function(err, user) {
-    if (err) console.error(err);
+    if (err) {
+      console.error(err);
+      if (err.code == 11000)
+        req.flash("error", "You cannot have the same " + err.keyPattern.username ? "username" : "email" + " as another admin");
+      return res.redirect("/users/new");
+    }
     user.sendVerificationEmail();
     res.redirect("/users");
   });
@@ -65,7 +70,7 @@ router.put("/:id", auth.isAdmin, function(req, res) {
     };
     if (editedUser.email != user.email) {
       editedUser.emailIsVerified = false;
-      editedUser.emailVerificationCode = shortid.generate;
+      editedUser.emailVerificationCode = shortid.generate();
     }
     User.findByIdAndUpdate(req.params.id, editedUser, {new: true}, function(err, updatedUser) {
       if (err) console.error(err);
@@ -94,9 +99,9 @@ router.delete("/:id", auth.isAdmin, function(req, res) {
   });
 });
 
-router.get("/verify-email", function(req, res) {
-  if (!req.query.code) return res.redirect("back");
-  User.find({emailVerificationCode: req.query.code}, function(err, user) {
+router.get("/verify-email/:code", function(req, res) {
+  if (!req.params.code) return res.redirect("back");
+  User.findOne({emailVerificationCode: req.params.code}, function(err, user) {
     if (err) {
       console.error(err);
       return res.redirect("back");
@@ -105,13 +110,21 @@ router.get("/verify-email", function(req, res) {
       req.flash("error", "The code you enetered is invalid or your email is already verified");
       return res.redirect("back");
     }
-    res.render("users/verify-email", {code: req.query.code});
+    if (req.user && req.user._id == user._id) {
+      User.findOneAndUpdate({emailVerificationCode: req.params.code}, {emailIsVerified: true, $unset: {emailVerificationCode: ""}},
+      function(err, updatedUser) {
+        if (err) console.error(err);
+        req.flash("success", "Successfully verified email");
+        return res.redirect("/");
+      });
+    } else
+      res.render("users/verify-email", {code: req.params.code});
   });
 });
 
-router.put("/verify-email", function(req, res) {
-  if (!req.query.code) return res.redirect("back");
-  User.find({emailVerificationCode: req.query.code}, function(err, user) {
+router.put("/verify-email/:code", function(req, res) {
+  if (!req.params.code || !req.body.username) return res.redirect("back");
+  User.findOne({emailVerificationCode: req.params.code}, function(err, user) {
     if (err) {
       console.error(err);
       return res.redirect("back");
@@ -121,9 +134,10 @@ router.put("/verify-email", function(req, res) {
       req.flash("error", "Incorrect username");
       return res.redirect("back");
     }
-    User.findOneAndUpdate({emailVerificationCode: req.query.code}, {emailIsVerified: true, $unset: {emailVerificationCode: ""}},
+    User.findOneAndUpdate({emailVerificationCode: req.params.code}, {emailIsVerified: true, $unset: {emailVerificationCode: ""}},
     function(err, updatedUser) {
       if (err) console.error(err);
+      req.flash("success", "Successfully verified email");
       res.redirect("/");
     });
   });

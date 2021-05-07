@@ -1,5 +1,29 @@
 <%- include("../partials/header") %>
 
-
+<a class="form__back-link" href="javascript:history.back()">Back</a>
+<form action="/users" method="post">
+  <div class="form__item">
+    <label class="form__label" for="username">Username</label>
+    <input class="form__input" type="text" name="username" minlength="3" maxlength="30" placeholder="Max. 30 characters" required/>
+  </div>
+  <div class="form__item">
+    <label class="form__label" for="password">Password</label>
+    <input class="form__input" type="password" name="password" maxlength="64" placeholder="Max. 64 characters" required/>
+  </div>
+  <div class="form__item">
+    <label class="form__label" for="email">Email</label>
+    <input class="form__input" type="email" name="email" maxlength="320" placeholder="Do NOT use your school email to avoid email restrictions" required/>
+  </div>
+  <div class="form__item">
+    <label class="form__label form__label--checkbox" for="emailNotifsOn">
+      <input class="form__input--checkbox" id="emailNotifsOn" type="checkbox" name="emailNotifsOn" value="true" checked/>
+      <div class="form__input--checkbox-square"></div>
+      <span style="margin-top: 6px;">Email me on a new Q/A</span>
+    </label>
+  </div>
+  <div class="form__item">
+    <button class="form__submit-button" type="submit">Submit</button>
+  </div>
+</form>
 
 <%- include("../partials/footer") %>

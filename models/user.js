@@ -1,7 +1,8 @@
 const mongoose = require("mongoose"),
       bcrypt = require("bcrypt"),
       shortid = require("shortid"),
-      email = require("../services/email");
+      email = require("../services/email"),
+      credentials = require("../config/credentials");
 
 var userSchema = new mongoose.Schema({
   _id: {type: String, default: shortid.generate},
@@ -30,7 +31,7 @@ userSchema.methods.checkPassword = function(guess, callback) {
 userSchema.methods.sendVerificationEmail = function() {
   if (!this.emailVerificationCode) return;
   email.send(this.email, "CS-Listen: Verify Your Email", "To verify your email with the MVHS CS-Listen website, click here: "
-  + credentials.siteURL + "/users/verify-email?code=" + this.emailVerificationCode);
+  + credentials.siteURL + "/users/verify-email/" + this.emailVerificationCode);
 }
 
 module.exports = mongoose.model("User", userSchema);
