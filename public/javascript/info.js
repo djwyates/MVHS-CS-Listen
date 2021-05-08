@@ -2,9 +2,10 @@ const sidebar = document.querySelector(".info__sidebar");
 const infoRows = document.querySelectorAll(".info__row");
 function constructSidebar() {
   if (!sidebar || !infoRows) return;
+  /* set fullscreen info row heights */
   sidebar.innerHTML = "";
-  var sidebarMaxHeight = window.innerHeight - nav.offsetHeight - getElementMargins(nav, ["top", "bottom"]) - footerMarginTop;
-  document.querySelector(".info__row--full-screen").style.height = Math.max(sidebarMaxHeight, 340) - 70 + "px";
+  var sidebarMaxHeight = Math.max(window.innerHeight - nav.offsetHeight - getElementMargins(nav, ["top", "bottom"]) - footerMarginTop, 330);
+  document.querySelector(".info__row--full-screen").style.height = Math.max(sidebarMaxHeight, 500) - 70 + "px";
   /* construct the sidebar */
   var sidebarCircleHeight = window.innerWidth > 760 ? 37 : 29;
   var sidebarLineHeight = sidebarMaxHeight - document.querySelectorAll(".info__row").length * sidebarCircleHeight;

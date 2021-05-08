@@ -29,7 +29,7 @@ router.post("/", function(req, res) {
   };
   if (req.user && req.user.isAdmin) {
     newFaq.answer = req.body.answer ? req.sanitize(req.body.answer).trim() : null;
-    newFaq.isPublic = req.body.isPublic;
+    newFaq.isPublic = req.body.isPublic ? true : false;
     if (req.body.order) newFaq.order = req.sanitize(req.body.order).trim();
   } else {
     Settings.findOne({active: true}, function(err, settings) {
@@ -40,9 +40,11 @@ router.post("/", function(req, res) {
           if (user.isAdmin && user.email && user.emailIsVerified && user.emailNotifsOn)
             emailRecipients.push(user.email);
         });
-        email.send(emailRecipients.join(), "CS-Listen: New Question", "This is an automated email to inform you that a new question has been asked"
-        + " on the CS-Listen website. Answer it after logging in as an admin: " + credentials.siteURL + "\n\nQuestion: " + newFaq.question
-        + "\nEmail of Asker: " + (newFaq.email ? newFaq.email : "None provided"));
+        if (emailRecipients.length > 0) {
+          email.send(emailRecipients.join(), "CS-Listen: New Question", "This is an automated email to inform you that a new question has been asked"
+          + " on the CS-Listen website. Answer it after logging in as an admin: " + credentials.siteURL + "\n\nQuestion: " + newFaq.question
+          + "\nEmail of Asker: " + (newFaq.email ? newFaq.email : "None provided"));
+        }
       });
     });
   }
@@ -77,7 +79,7 @@ router.put("/:id", auth.isAdmin, function(req, res) {
       question: req.sanitize(req.body.question).trim(),
       email: req.body.email ? req.sanitize(req.body.email).trim() : null,
       answer: req.body.answer ? req.sanitize(req.body.answer).trim() : null,
-      isPublic: req.body.isPublic,
+      isPublic: req.body.isPublic ? true : false,
       order: req.body.order ? req.sanitize(req.body.order).trim() : 0
     };
     Faq.findByIdAndUpdate(req.params.id, editedFaq, function(err, updatedFaq) {

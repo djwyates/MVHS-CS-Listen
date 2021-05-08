@@ -26,6 +26,15 @@ body {
   color: #56E07D;
 }
 
+.slide-from-left {
+  animation-name: slide;
+  animation-duration: 0.65s;
+}
+
+@keyframes slide {
+ from { left: 100%; }
+}
+
 .page-not-found {
 	display: flex;
 	flex-direction: column;

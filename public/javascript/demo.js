@@ -6,7 +6,7 @@ function constructDemos() {
       const demoLine = demoTitle.children[1] || demoTitle.children[0];
       demoLine.style.width = window.innerWidth - getElementMargins(bodyWrapper, ["left"]) - demoTitle.offsetWidth - getScrollbarWidth() + "px";
     });
-  } if (demoCards) {
+  } if (demoCards) { // TODO: ADJUST CARD MARGINS FOR MOBILE
     demoCards.forEach(function(demoCard) {
       if (demoCard.offsetLeft + demoCard.offsetWidth > window.innerWidth)
         demoCard.style.marginLeft = "-10px";

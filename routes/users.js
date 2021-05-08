@@ -12,7 +12,7 @@ router.get("/", auth.isAdmin, function(req, res) {
       console.error(err);
       return res.redirect("/");
     }
-    res.render("users/index", {users: users});
+    res.render("users/index", {admins: users});
   });
 });
 
@@ -21,12 +21,15 @@ router.get("/new", auth.isAdmin, function(req, res) {
 });
 
 router.post("/", auth.isAdmin, function(req, res) {
-  if (req.body.password.length > 64) return res.redirect("/users/new");
+  if (req.body.password.length > 64) {
+    req.flash("error", "Password must be 64 characters or less");
+    return res.redirect("/users/new");
+  }
   var newUser = {
     username: req.sanitize(req.body.username).trim(),
     password: req.body.password,
     email: req.sanitize(req.body.email).trim(),
-    emailNotifsOn: req.body.emailNotifsOn,
+    emailNotifsOn: req.body.emailNotifsOn ? true : false,
     emailIsVerified: false,
     emailVerificationCode: shortid.generate(),
     isAdmin: true
@@ -50,7 +53,7 @@ router.get("/:id/edit", auth.isAdmin, function(req, res) {
       return res.redirect("/users");
     }
     if (!user) return res.redirect("/users");
-    res.render("users/edit", {user: user});
+    res.render("users/edit", {admin: user});
   });
 });
 
@@ -61,13 +64,17 @@ router.put("/:id", auth.isAdmin, function(req, res) {
       return res.redirect("/users");
     }
     if (!user) return res.redirect("/users");
-    if (req.body.password.length > 64) return res.redirect("/users/" + req.params.id + "/edit");
     var editedUser = {
       username: req.sanitize(req.body.username).trim(),
-      password: req.body.password,
       email: req.sanitize(req.body.email).trim(),
-      emailNotifsOn: req.body.emailNotifsOn
+      emailNotifsOn: req.body.emailNotifsOn ? true : false
     };
+    if (req.body.password && req.body.password.length <= 64) {
+      editedUser.password = req.body.password;
+    } else if (req.body.password && req.body.password.length > 64) {
+      req.flash("error", "Password must be 64 characters or less");
+      return res.redirect("/users/" + req.params.id + "/edit");
+    }
     if (editedUser.email != user.email) {
       editedUser.emailIsVerified = false;
       editedUser.emailVerificationCode = shortid.generate();
@@ -77,7 +84,7 @@ router.put("/:id", auth.isAdmin, function(req, res) {
       var flashMsg = "Changes saved";
       if (editedUser.email != user.email) {
         updatedUser.sendVerificationEmail();
-        flashMsg += "<br>Since you changed your email, be sure to re-verify it";
+        flashMsg += ": Since you changed your email, be sure to re-verify it";
       }
       req.flash("success", flashMsg);
       res.redirect("/users/" + req.params.id + "/edit");

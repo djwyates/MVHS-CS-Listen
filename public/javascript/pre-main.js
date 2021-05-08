@@ -2,6 +2,7 @@
 const nav = document.querySelector(".nav");
 const footer = document.querySelector(".footer");
 const bodyWrapper = document.querySelector(".body-wrapper");
+const flash = document.querySelector(".flash");
 const footerMarginTop = getElementMargins(footer, ["top"]);
 
 function getElementMargins(element, margins) {
@@ -50,3 +51,11 @@ function getTotalDocumentHeight() {
 
 /* setting heights for certain elements */
 bodyWrapper.style.minHeight = window.innerHeight - nav.offsetHeight - getElementMargins(nav, ["top", "bottom"]) - footerMarginTop + "px";
+
+/* flash message configuration */
+const flashCloseIcon = document.querySelector(".flash__close-icon");
+if (flash && flashCloseIcon) {
+  flashCloseIcon.addEventListener("click", function() {
+    flash.style.display = "none";
+  });
+}

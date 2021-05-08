@@ -24,5 +24,33 @@
         <a class="nav__link" href="#">Further Info</a>
       </div>
       <img class="nav__menu" src="/images/icons/burger-menu.svg" width="35"  height="35" alt="menu"/>
+      <% if (flash.success.length > 0) { %>
+        <div class="flash flash--success slide-from-left">
+          <img class="flash__icon" src="/images/icons/success.svg" alt="success"/>
+          <div class="flash__text-content">
+            <h1 class="flash__title">Success</h1>
+            <p class="flash__description"><%= flash.success.join(", ") %></p>
+          </div>
+          <img class="flash__close-icon" src="/images/icons/close.svg" alt="close"/>
+        </div>
+      <% } else if (flash.info.length > 0) { %>
+        <div class="flash flash--info slide-from-left">
+          <img class="flash__icon" src="/images/icons/info.svg" alt="info"/>
+          <div class="flash__text-content">
+            <h1 class="flash__title">Info</h1>
+            <p class="flash__description"><%= flash.info.join(", ") %></p>
+          </div>
+          <img class="flash__close-icon" src="/images/icons/close.svg" alt="close"/>
+        </div>
+      <% } else if (flash.error.length > 0) { %>
+        <div class="flash flash--error slide-from-left">
+          <img class="flash__icon" src="/images/icons/error.svg" alt="error"/>
+          <div class="flash__text-content">
+            <h1 class="flash__title">Error</h1>
+            <p class="flash__description"><%= flash.error.join(", ") %></p>
+          </div>
+          <img class="flash__close-icon" src="/images/icons/close.svg" alt="close"/>
+        </div>
+      <% } %>
     </nav>
     <div class="body-wrapper">

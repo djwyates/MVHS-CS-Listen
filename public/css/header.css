@@ -1,5 +1,6 @@
 .nav {
   display: flex;
+  position: relative;
   align-items: center;
   padding: 28px 7.5%;
   margin-bottom: 40px;
@@ -34,4 +35,75 @@
   display: none;
   margin-bottom: 5px;
   cursor: pointer;
+}
+
+.flash {
+  display: flex;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  max-width: 450px;
+  padding: 10px 0 10px 0;
+  align-items: center;
+  background-color: #464653;
+  border-radius: 0px 5px 5px 0px;
+  transition: 0.3s;
+  z-index: 1;
+}
+
+.flash::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 100%;
+  background-color: #545493;
+}
+
+.flash--success::before {
+  background-color: #417246;
+}
+
+.flash--info::before {
+  background-color: #486f92;
+}
+
+.flash--error::before {
+  background-color: #93454c;
+}
+
+.flash__icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 30px;
+}
+
+.flash__close-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 15px 0 auto;
+  cursor: pointer;
+}
+
+.flash__text-content {
+  display: flex;
+  flex-direction: column;
+  margin: 0 15px;
+}
+
+.flash__title {
+  color: #8B8B9E;
+  font-family: "Hind", sans-serif;
+  font-size: 20px;
+	font-weight: 600;
+  line-height: 1.5;
+}
+
+.flash__description {
+  color: #8B8B9E;
+  font-family: "Hind", sans-serif;
+  font-size: 18px;
+	font-weight: 300;
+  line-height: 1.15;
 }

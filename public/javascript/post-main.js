@@ -1,12 +1,17 @@
 function refreshAllStyles() {
-  if (sidebar && infoRows) constructSidebar();
+  constructSidebar();
   constructDemos();
+  if (flash) flash.style.left = window.innerWidth - getElementMargins(bodyWrapper, ["right"]) - flash.offsetWidth + "px";
 }
 
-window.onload = refreshAllStyles;
+window.onload = function() {
+  refreshAllStyles();
+};
 
-window.onresize = refreshAllStyles;
+window.onresize = function() {
+  refreshAllStyles();
+};
 
 window.onscroll = function() {
   sidebarOnScroll();
-}
+};

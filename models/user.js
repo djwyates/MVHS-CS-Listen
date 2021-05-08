@@ -24,6 +24,15 @@ userSchema.pre("save", function(next) {
   });
 });
 
+userSchema.pre("findOneAndUpdate", function(next) {
+  var user = this.getUpdate();
+  if (!user.password) return next();
+  bcrypt.hash(user.password, 10, function(err, hash) {
+    user.password = hash;
+    next();
+  });
+});
+
 userSchema.methods.checkPassword = function(guess, callback) {
   bcrypt.compare(guess, this.password, callback);
 }
