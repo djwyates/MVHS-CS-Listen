@@ -4,6 +4,8 @@ function refreshAllStyles() {
   if (flash) flash.style.left = window.innerWidth - getElementMargins(bodyWrapper, ["right"]) - flash.offsetWidth + "px";
 }
 
+refreshAllStyles();
+
 window.onload = function() {
   refreshAllStyles();
 };

@@ -7,6 +7,7 @@
 
 body {
   background-color: #2F2F3B;
+	overflow-x: hidden;
 }
 
 .body-wrapper {

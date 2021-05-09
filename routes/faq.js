@@ -11,6 +11,7 @@ router.get("/", function(req, res) {
   Faq.find({}, function(err, faqs) {
     if (err) {
       console.error(err);
+      req.flash("error", "Failed retrieving all Q/A entries");
       return res.redirect("/");
     }
     res.render("faq/index", {faqs: faqs});
@@ -37,13 +38,14 @@ router.post("/", function(req, res) {
       User.find({}, function(err, users) {
         var emailRecipients = [];
         users.forEach(function(user) {
-          if (user.isAdmin && user.email && user.emailIsVerified && user.emailNotifsOn)
+          /* max. email recipients is 15 to prevent max. gmail sending restrictions */
+          if (user.isAdmin && user.email && user.emailIsVerified && user.emailNotifsOn && emailRecipients.length < 15)
             emailRecipients.push(user.email);
         });
         if (emailRecipients.length > 0) {
           email.send(emailRecipients.join(), "CS-Listen: New Question", "This is an automated email to inform you that a new question has been asked"
           + " on the CS-Listen website. Answer it after logging in as an admin: " + credentials.siteURL + "\n\nQuestion: " + newFaq.question
-          + "\nEmail of Asker: " + (newFaq.email ? newFaq.email : "None provided"));
+          + "\n\nEmail of Asker: " + (newFaq.email ? newFaq.email : "None provided"));
         }
       });
     });
@@ -53,6 +55,8 @@ router.post("/", function(req, res) {
     return res.redirect("/faq/new");
   Faq.create(newFaq, function(err, faq) {
     if (err) console.error(err);
+    else if (req.user && req.user.isAdmin) req.flash("success", "Created Q/A");
+    else req.flash("success", "You will hear back from us soon!");
     res.redirect("/faq");
   });
 });
@@ -61,6 +65,7 @@ router.get("/:id/edit", auth.isAdmin, function(req, res) {
   Faq.findById(req.params.id, function(err, faq) {
     if (err) {
       console.error(err);
+      req.flash("error", "Failed retrieving the Q/A to edit");
       return res.redirect("/faq");
     }
     if (!faq) return res.redirect("/faq");
@@ -72,6 +77,7 @@ router.put("/:id", auth.isAdmin, function(req, res) {
   Faq.findById(req.params.id, function(err, faq) {
     if (err) {
       console.error(err);
+      req.flash("error", "Failed retrieving the Q/A to update");
       return res.redirect("/faq");
     }
     if (!faq) return res.redirect("/faq");
@@ -84,6 +90,7 @@ router.put("/:id", auth.isAdmin, function(req, res) {
     };
     Faq.findByIdAndUpdate(req.params.id, editedFaq, function(err, updatedFaq) {
       if (err) console.error(err);
+      else req.flash("success", "Changes saved");
       res.redirect("/faq");
     });
   });
@@ -93,11 +100,13 @@ router.delete("/:id", auth.isAdmin, function(req, res) {
   Faq.findById(req.params.id, function(err, faq) {
     if (err) {
       console.error(err);
+      req.flash("error", "Failed retrieving the Q/A to delete");
       return res.redirect("/faq");
     }
     if (!faq) return res.redirect("/faq");
     Faq.findByIdAndDelete(req.params.id, function(err, deletedFaq) {
       if (err) console.error(err);
+      else req.flash("success", "Deleted Q/A");
       res.redirect("/faq");
     });
   });

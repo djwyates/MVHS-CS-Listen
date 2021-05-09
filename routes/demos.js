@@ -7,6 +7,7 @@ router.get("/", function(req, res) {
   Demo.find({}, function(err, demos) {
     if (err) {
       console.error(err);
+      req.flash("error", "Failed retrieving all demos");
       return res.redirect("/");
     }
     res.render("demos/index", {demos: demos});
@@ -29,6 +30,7 @@ router.post("/", auth.isAdmin, function(req, res) {
   };
   Demo.create(newDemo, function(err, demo) {
     if (err) console.error(err);
+    else req.flash("success", "Created demo");
     res.redirect("/demos/" + demo._id);
   });
 });
@@ -37,6 +39,7 @@ router.get("/:id", function(req, res) {
   Demo.findById(req.params.id, function(err, demo) {
     if (err) {
       console.error(err);
+      req.flash("error", "Failed retrieving the demo");
       return res.redirect("/demos");
     }
     if (!demo) return res.redirect("/demos");
@@ -48,6 +51,7 @@ router.get("/:id/edit", auth.isAdmin, function(req, res) {
   Demo.findById(req.params.id, function(err, demo) {
     if (err) {
       console.error(err);
+      req.flash("error", "Failed retrieving the demo to edit");
       return res.redirect("/demos");
     }
     if (!demo) return res.redirect("/demos");
@@ -59,6 +63,7 @@ router.put("/:id", auth.isAdmin, function(req, res) {
   Demo.findById(req.params.id, function(err, demo) {
     if (err) {
       console.error(err);
+      req.flash("error", "Failed retrieving the demo to update");
       return res.redirect("/demos");
     }
     if (!demo) return res.redirect("/demos");
@@ -73,6 +78,7 @@ router.put("/:id", auth.isAdmin, function(req, res) {
     };
     Demo.findByIdAndUpdate(req.params.id, editedDemo, function(err, updatedDemo) {
       if (err) console.error(err);
+      else req.flash("success", "Changes saved");
       res.redirect("/demos/" + req.params.id);
     });
   });
@@ -82,11 +88,13 @@ router.delete("/:id", auth.isAdmin, function(req, res) {
   Demo.findById(req.params.id, function(err, demo) {
     if (err) {
       console.error(err);
+      req.flash("error", "Failed retrieving the demo to delete");
       return res.redirect("/demos");
     }
     if (!demo) return res.redirect("/demos");
     Demo.findByIdAndDelete(req.params.id, function(err, deletedDemo) {
       if (err) console.error(err);
+      else req.flash("success", "Deleted demo");
       res.redirect("/demos");
     });
   });
