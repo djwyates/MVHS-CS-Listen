@@ -47,7 +47,7 @@
   align-items: center;
   background-color: #464653;
   border-radius: 0px 5px 5px 0px;
-  transition: 0.5s;
+  transition: 0.15s;
   z-index: 1;
 }
 
@@ -71,6 +71,11 @@
 
 .flash--error::before {
   background-color: #93454c;
+}
+
+.flash--invisible {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .flash__icon {

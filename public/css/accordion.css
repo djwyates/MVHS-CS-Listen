@@ -1,0 +1,59 @@
+.accordion {
+  position: relative;
+  padding: 16px 16px 11px 16px;
+  margin-top: 25px;
+  width: 100%;
+  background: rgba(167, 167, 191, 0.15);
+  border: 1px solid rgba(167, 167, 191, 0.15);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.05s;
+}
+
+.accordion:hover {
+  border: 1px solid rgba(147, 147, 241, 0.75);
+}
+
+.accordion__header {
+  display: flex;
+}
+
+.accordion__title {
+  color: rgba(211, 211, 211, 0.9);
+  font-family: "Hind", sans-serif;
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1.25;
+  transition: 0.2s;
+}
+
+.accordion__title--purple {
+  color: #9393F1;
+}
+
+.accordion__icons {
+  display: flex;
+  margin-left: auto;
+}
+
+.accordion__icons > img:first-of-type {
+  margin-left: 15px;
+}
+
+.accordion__icons > img:not(:first-of-type) {
+  margin-left: 25px;
+}
+
+.accordion__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.accordion__description {
+  padding: 14px 0;
+  color: rgba(211, 211, 211, 0.95);
+  font-family: "Inconsolata", monospace;
+  font-size: 26px;
+  font-weight: 400;
+}

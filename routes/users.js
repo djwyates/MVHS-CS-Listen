@@ -89,7 +89,7 @@ router.put("/:id", auth.isAdmin, function(req, res) {
       if (err) {
         console.error(err);
         if (err.code == 11000)
-          req.flash("error", "You cannot have the same " + err.keyPattern.username ? "username" : "email" + " as another admin");
+          req.flash("error", "You cannot have the same " + (err.keyPattern.username ? "username" : "email") + " as another admin");
         else
           req.flash("error", "An unexpected error occurred: Changes may not have been saved");
         return res.redirect("/users/" + req.params.id + "/edit");

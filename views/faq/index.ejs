@@ -14,45 +14,26 @@
 </div>
 
 <% function getFaqHTML(faq) { %>
-  <div class="faq__accordion">
-    <div class="faq__question"><%= faq.question %>
-      <div class="faq__icons">
+  <div class="accordion">
+    <div class="accordion__header">
+      <h1 class="accordion__title"><%= faq.question %></h1>
+      <div class="accordion__icons">
         <% if (user && user.isAdmin) { %>
-          <img class="faq__edit" data-href="/faq/<%= faq._id %>/edit" src="/images/icons/edit.svg" alt="edit"/>
-          <img class="faq__delete" data-href="/faq/<%= faq._id %>?_method=delete" src="/images/icons/delete.svg" alt="delete"/>
+          <img class="icon-edit" data-href="/faq/<%= faq._id %>/edit" src="/images/icons/edit.svg" alt="edit"/>
+          <img class="icon-delete" data-href="/faq/<%= faq._id %>?_method=delete" src="/images/icons/delete.svg" alt="delete"/>
         <% } %>
-        <img src="/images/icons/plus-sign.svg" alt="plus_or_minus_sign">
+        <img class="icon-plus-or-minus" src="/images/icons/plus-sign.svg" alt="plus_or_minus_sign">
       </div>
     </div>
-    <div class="faq__accordion-body">
-      <p class="faq__answer"><% if (faq.answer) { %><%= faq.answer %><% } else { %>// Not yet answered<% } %></p>
+    <div class="accordion__body">
+      <p class="accordion__description"><% if (faq.answer) { %><%= faq.answer %><% } else { %>// Not yet answered<% } %></p>
     </div>
   </div>
 <% } %>
 
 <script>
-  /* accordion expand/contract */
-  const accordions = document.querySelectorAll(".faq__accordion");
-  if (accordions) {
-    accordions.forEach(function(accordion) {
-      accordion.addEventListener("click", function(e) {
-        if (e.target.classList.contains("faq__edit") || e.target.classList.contains("faq__delete") || e.target.nodeName == "BUTTON") return;
-        var question = accordion.children[0];
-        var plusOrMinusSign = question.children[0].children[2] || question.children[0].children[0];
-        var accordionBody = accordion.children[1];
-        question.classList.toggle("faq__question--purple");
-        if (question.classList.contains("faq__question--purple")) {
-          accordionBody.style.maxHeight = accordionBody.scrollHeight + "px";
-          plusOrMinusSign.src = "/images/icons/minus-sign.svg";
-        } else {
-          accordionBody.style.maxHeight = 0;
-          plusOrMinusSign.src = "/images/icons/plus-sign.svg";
-        }
-      });
-    });
-  }
   /* edit link */
-  const editLinks = document.querySelectorAll(".faq__edit");
+  const editLinks = document.querySelectorAll(".icon-edit");
   if (editLinks) {
     editLinks.forEach(function(editLink) {
       editLink.addEventListener("click", function() {
@@ -61,7 +42,7 @@
     });
   }
   /* delete button */
-  const deleteButtons = document.querySelectorAll(".faq__delete");
+  const deleteButtons = document.querySelectorAll(".icon-delete");
   if (deleteButtons) {
     deleteButtons.forEach(function(deleteButton) {
       deleteButton.addEventListener("click", function() {

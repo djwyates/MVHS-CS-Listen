@@ -5,6 +5,13 @@ const bodyWrapper = document.querySelector(".body-wrapper");
 const flash = document.querySelector(".flash");
 const footerMarginTop = getElementMargins(footer, ["top"]);
 
+function getChildWithClass(element, className) {
+  for (var i = 0; i < element.children.length; i++) {
+    if (element.children[i].classList.contains(className)) return element.children[i];
+  }
+  return null;
+}
+
 function getElementMargins(element, margins) {
   if (!element || !margins || !Array.isArray(margins)) return;
   var totalMargin = 0;
@@ -56,6 +63,27 @@ bodyWrapper.style.minHeight = window.innerHeight - nav.offsetHeight - getElement
 const flashCloseIcon = document.querySelector(".flash__close-icon");
 if (flash && flashCloseIcon) {
   flashCloseIcon.addEventListener("click", function() {
-    flash.style.display = "none";
+    flash.classList.add("flash--invisible");
+  });
+}
+
+/* accordion expand/contract */
+const accordions = document.querySelectorAll(".accordion");
+if (accordions) {
+  accordions.forEach(function(accordion) {
+    accordion.addEventListener("click", function(e) {
+      if (e.target.classList.contains("icon-edit") || e.target.classList.contains("icon-delete") || e.target.nodeName == "BUTTON") return;
+      var accordionTitle = accordion.children[0].children[0];
+      var plusOrMinusSign = getChildWithClass(accordion.children[0].children[1], "icon-plus-or-minus");
+      var accordionBody = accordion.children[1];
+      accordionTitle.classList.toggle("accordion__title--purple");
+      if (accordionTitle.classList.contains("accordion__title--purple")) {
+        accordionBody.style.maxHeight = accordionBody.scrollHeight + "px";
+        if (plusOrMinusSign) plusOrMinusSign.src = "/images/icons/minus-sign.svg";
+      } else {
+        accordionBody.style.maxHeight = 0;
+        if (plusOrMinusSign) plusOrMinusSign.src = "/images/icons/plus-sign.svg";
+      }
+    });
   });
 }
