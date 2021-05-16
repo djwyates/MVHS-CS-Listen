@@ -1,3 +1,28 @@
+@media only screen and (max-width: 1300px) {
+  .info__content {
+    width: 100%;
+  }
+  .info__row {
+    flex-direction: column;
+  }
+  .info__row--full-screen {
+    align-items: baseline;
+  }
+  .info__row > .info__column:not(:first-of-type) {
+    margin-left: 0;
+  }
+  .info__column {
+    width: 100%;
+  }
+  .info__column--center {
+    width: 100%;
+    align-items: baseline;
+  }
+  .info__image {
+    margin-top: 35px;
+  }
+}
+
 @media only screen and (max-width: 1000px) {
   .nav__link:not(:first-of-type) {
     margin-left: 75px;
@@ -10,6 +35,7 @@
   }
 }
 
+/* full mobile mode */
 @media only screen and (max-width: 770px) {
   .body-wrapper {
     margin: 0 5%;
@@ -27,32 +53,18 @@
   .nav__menu {
     display: block;
   }
-  /* if sidebar will be used on mobile */
-  .info__sidebar-circle {
-    width: 29px;
-    height: 29px;
-  }
-  .info__sidebar-text {
-    font-size: 20px;
-  }
-  .info__sidebar-line {
-    top: 29px;
-    left: calc(29px / 2 - 2px);
-  }
-  .info__sidebar {
-    margin-left: 0;
-  }
-  .info__content {
-    margin-left: 4%;
-  }
-  /* if sidebar will not be used on mobile */
   .info__sidebar {
     display: none;
   }
   .info__content {
-    margin-left: 0;
+    padding-left: 0;
   }
-  /* ------------------------------------- */
+  .info__column {
+    min-width: 100%;
+  }
+  .info__image {
+    width: 95%;
+  }
   .demos__cards {
     margin-left: 10px;
   }

@@ -4,7 +4,7 @@
 <form action="/users/verify-email/<%= code %>?_method=put" method="post">
   <div class="form__item form__item--more-space">
     <label class="form__label form__label--more-space" for="username">Enter your username to verify your email</label>
-    <input class="form__input" type="text" name="username" placeholder="For admins only" style="width:450px;" required/>
+    <input class="form__input form__input--small" type="text" name="username" placeholder="For admins only" required/>
   </div>
   <div class="form__item form__item--more-space">
     <button class="form__submit-button" type="submit">Verify</button>

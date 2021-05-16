@@ -27,7 +27,7 @@
       </label>
     </div>
   <% } %>
-  <div class="form__item">
+  <div class="form__item <% if (!user || !user.isAdmin) { %>form__item--more-space<% } %>">
     <button class="form__submit-button" type="submit">Submit</button>
   </div>
 </form>

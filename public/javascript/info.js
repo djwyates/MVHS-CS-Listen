@@ -5,7 +5,10 @@ function constructSidebar() {
   /* set fullscreen info row heights */
   sidebar.innerHTML = "";
   var sidebarMaxHeight = Math.max(window.innerHeight - nav.offsetHeight - getElementMargins(nav, ["top", "bottom"]) - footerMarginTop, 330);
-  document.querySelector(".info__row--full-screen").style.height = Math.max(sidebarMaxHeight, 500) - 70 + "px";
+  if (window.innerWidth > 1300) // if the image is on the same row as the text content
+    document.querySelector(".info__row--full-screen").style.height = Math.max(sidebarMaxHeight, 500) - 70 + "px";
+  else
+    document.querySelector(".info__row--full-screen").style.height = "auto";
   /* construct the sidebar */
   var sidebarCircleHeight = window.innerWidth > 760 ? 37 : 29;
   var sidebarLineHeight = sidebarMaxHeight - document.querySelectorAll(".info__row").length * sidebarCircleHeight;

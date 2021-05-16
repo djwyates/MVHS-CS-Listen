@@ -65,6 +65,10 @@
   font-weight: 400;
 }
 
+.form__input--small {
+  max-width: 450px;
+}
+
 .form__input--select {
   max-width: 210px;
   padding: 11px 16px;
