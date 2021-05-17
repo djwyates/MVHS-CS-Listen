@@ -57,3 +57,15 @@
   font-size: 26px;
   font-weight: 400;
 }
+
+.accordion__link {
+  color: rgba(211, 211, 211, 0.95);
+  font-family: "Inconsolata", monospace;
+  font-size: 26px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.accordion__link:hover {
+  text-decoration: underline;
+}

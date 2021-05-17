@@ -72,7 +72,9 @@ const accordions = document.querySelectorAll(".accordion");
 if (accordions) {
   accordions.forEach(function(accordion) {
     accordion.addEventListener("click", function(e) {
-      if (e.target.classList.contains("icon-edit") || e.target.classList.contains("icon-delete") || e.target.nodeName == "BUTTON") return;
+      if (e.target.classList.contains("icon-edit") || e.target.classList.contains("icon-delete") || e.target.nodeName == "BUTTON"
+      || e.target.nodeName == "A")
+        return;
       var accordionTitle = accordion.children[0].children[0];
       var plusOrMinusSign = getChildWithClass(accordion.children[0].children[1], "icon-plus-or-minus");
       var accordionBody = accordion.children[1];

@@ -13,7 +13,8 @@
     <div class="accordion__body">
       <p class="accordion__description">
         Email Notifs On: <% if (admin.emailNotifsOn) { %>True<% } else { %>False<% } %><br>
-        Email is Verified: <% if (admin.emailIsVerified) { %>True<% } else { %>False<% } %>
+        Email is Verified: <% if (admin.emailIsVerified) { %>True<% } else { %>False
+          - <a class="accordion__link" href="/users/<%= admin._id %>/resend-verification-email">Resend Verification Email</a><% } %>
       </p>
     </div>
   </div>

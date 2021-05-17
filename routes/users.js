@@ -96,7 +96,7 @@ router.put("/:id", auth.isAdmin, function(req, res) {
       }
       var flashMsg = "Changes saved";
       if (editedUser.email != user.email) {
-        updatedUser.sendVerificationEmail();
+        updatedUser.sendVerificationEmail({overrideTimeout: true});
         flashMsg += ": Since you changed your email, be sure to re-verify it";
       }
       req.flash("success", flashMsg);
@@ -121,6 +121,27 @@ router.delete("/:id", auth.isAdmin, function(req, res) {
   });
 });
 
+router.get("/:id/resend-verification-email", auth.isAdmin, function(req, res) {
+  User.findById(req.params.id, function(err, user) {
+    if (err) {
+      console.error(err);
+      req.flash("error", "Failed retrieving the user");
+      return res.redirect("/users");
+    }
+    if (!user) return res.redirect("/users");
+    if (user.emailIsVerified) {
+      req.flash("error", "Their email is already verified");
+      return res.redirect("back");
+    }
+    var result = user.sendVerificationEmail();
+    if (result !== "success")
+      req.flash("error", "Available only every 24 hours (try again on " + result + ")");
+    else
+      req.flash("success", "Sent verification email");
+    res.redirect("back");
+  });
+});
+
 router.get("/verify-email/:code", function(req, res) {
   if (!req.params.code) return res.redirect("back");
   User.findOne({emailVerificationCode: req.params.code}, function(err, user) {
@@ -137,7 +158,7 @@ router.get("/verify-email/:code", function(req, res) {
       User.findOneAndUpdate({emailVerificationCode: req.params.code}, {emailIsVerified: true, $unset: {emailVerificationCode: ""}},
       function(err, updatedUser) {
         if (err) console.error(err);
-        req.flash("success", "Successfully verified email");
+        req.flash("success", "Verified email");
         return res.redirect("/");
       });
     } else
@@ -158,10 +179,10 @@ router.put("/verify-email/:code", function(req, res) {
       req.flash("error", "Incorrect username");
       return res.redirect("back");
     }
-    User.findOneAndUpdate({emailVerificationCode: req.params.code}, {emailIsVerified: true, $unset: {emailVerificationCode: ""}},
-    function(err, updatedUser) {
+    User.findOneAndUpdate({emailVerificationCode: req.params.code},
+    {emailIsVerified: true, $unset: {emailVerificationCode: "", emailVerificationSentOn: ""}}, function(err, updatedUser) {
       if (err) console.error(err);
-      req.flash("success", "Successfully verified email");
+      req.flash("success", "Verified email");
       res.redirect("/");
     });
   });
