@@ -109,17 +109,17 @@
   margin-top: 20px;
 }
 
-.info__links {
+.info__buttons {
   width: auto;
   max-width: 100%;
   display: flex;
 }
 
-.info__links > .info__link:not(:first-of-type) {
+.info__buttons > .info__button:not(:first-of-type) {
   margin-left: 20px;
 }
 
-.info__link {
+.info__button {
   display: inline-block;
   align-self: flex-start;
   margin-top: 30px;
@@ -136,8 +136,20 @@
   transition: 0.2s;
 }
 
-.info__link:hover {
+.info__button:hover {
   background-color: rgba(139, 139, 158, 0.2);
+}
+
+.info__link {
+  color: #8B8B9E;
+  font-family: "Inconsolata", monospace;
+  font-size: clamp(24px, 7vw, 34px);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.info__link:hover {
+  text-decoration: underline;
 }
 
 .info__image {

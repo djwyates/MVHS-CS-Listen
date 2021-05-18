@@ -2,13 +2,14 @@ const sidebar = document.querySelector(".info__sidebar");
 const infoRows = document.querySelectorAll(".info__row");
 function constructSidebar() {
   if (!sidebar || !infoRows) return;
-  /* set fullscreen info row heights */
+  /* set fullscreen info row height */
   sidebar.innerHTML = "";
   var sidebarMaxHeight = Math.max(window.innerHeight - nav.offsetHeight - getElementMargins(nav, ["top", "bottom"]) - footerMarginTop, 330);
-  if (window.innerWidth > 1300) // if the image is on the same row as the text content
-    document.querySelector(".info__row--full-screen").style.height = Math.max(sidebarMaxHeight, 500) - 70 + "px";
-  else
-    document.querySelector(".info__row--full-screen").style.height = "auto";
+  const fullscreenInfoRow = document.querySelector(".info__row--full-screen");
+  if (fullscreenInfoRow) {
+    if (window.innerWidth > 1300) fullscreenInfoRow.style.height = Math.max(sidebarMaxHeight, 500) - 70 + "px";
+    else fullscreenInfoRow.style.height = "auto";
+  }
   /* construct the sidebar */
   var sidebarCircleHeight = window.innerWidth > 760 ? 37 : 29;
   var sidebarLineHeight = sidebarMaxHeight - document.querySelectorAll(".info__row").length * sidebarCircleHeight;

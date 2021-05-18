@@ -23,7 +23,8 @@
   </div>
   <div class="form__item">
     <label class="form__label" for="tags">Tags</label>
-    <input class="form__input" type="text" name="tags" placeholder="Optional: Separate with commas" value="<%= demo.tags.join() %>"/>
+    <input class="form__input" type="text" name="tags" placeholder="Optional: Separate with commas"
+    value="<% if (demo.tags) { %><%= demo.tags.join() %><% } %>"/>
   </div>
   <div class="form__item">
     <label class="form__label" for="imageFileName">Image File Name</label>
