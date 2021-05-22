@@ -161,6 +161,19 @@
   border-radius: 10px;
 }
 
+.info__gallery {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  grid-gap: 20px;
+}
+
+.info__gallery > .info__image {
+  margin-top: 0;
+}
+
+/* styles for MVHS CS pathway graphic */
+
 .info__pathways-row {
   display: flex;
   padding: 25px 0;

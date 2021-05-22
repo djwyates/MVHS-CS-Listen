@@ -65,9 +65,6 @@
   .info__image {
     width: 95%;
   }
-  .demos__cards {
-    margin-left: 10px;
-  }
   .footer {
     flex-direction: column;
   }
